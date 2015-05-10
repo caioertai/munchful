@@ -1,16 +1,7 @@
 angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
 .controller('IndexController', function($scope, supersonic) {
   // $scope.navbarTitle = "What a Munchful table!";
-  $scope.Math = Math;
-
-  $scope.tUp = 0;
-  $scope.tRight = 0;
-  $scope.tDown = 0;
-  $scope.tLeft = 0;
-
-  $scope.alert = function(event) {
-    alert(event.distance);
-  };
+  // $scope.Math = Math;
   steroids.view.setBackgroundColor("#CCCCCC");
 
   // Table functions
