@@ -2,11 +2,20 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
 .controller('IndexController', function($scope, supersonic) {
   // $scope.navbarTitle = "What a Munchful table!";
   // $scope.Math = Math;
+  $scope.alert = function(i){
+    alert(i);
+  };
   steroids.view.setBackgroundColor("#CCCCCC");
 
   // Table functions
   $scope.inCombat = false;
-  $scope.inSheet = false;
+  $scope.inPlayer = false;
+  $scope.currentPlayer = 0;
+
+  $scope.playerSheet = function(position){
+    $scope.inPlayer = true;
+    $scope.currentPlayer = position;
+  };
 
   // Players directions
   var direction = {
@@ -23,13 +32,23 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     west: [direction.right, direction.down, direction.left, direction.up]
   }
 
+  $scope.colors = [
+    ['#0087CA', '#006ca6'],
+    ['#86328C', '#642568'],
+    ['#F15A24', '#cc4c1e'],
+    ['#91be4a', '#75993c'],
+    ['#c1272d', '#991132'],
+    ['#f7931e', '#cf7b19']
+  ];
+  var colors = $scope.colors;
+
   $scope.players = [
-    {lvl: 1, gear: 0, facing: facing.north, color: '#0087CA', darkColor: '#006ca6', style: 'left: 50%; margin-left: -15vw; bottom: 5%'},
-    {lvl: 1, gear: 0, facing: facing.east, color: '#86328C', darkColor: '#642568', style: 'left: 2%; top: 53%; -webkit-transform: rotate(90deg)'},
-    {lvl: 1, gear: 0, facing: facing.east, color: '#F15A24', darkColor: '#cc4c1e', style: 'left: 2%; top: 47%; -webkit-transform: rotate(90deg); margin-top: -30vw'},
-    {lvl: 1, gear: 0, facing: facing.south, color: '#91be4a', darkColor: '#75993c', style: 'left: 50%; margin-left: -15vw; top: 5%; -webkit-transform: rotate(180deg)'},
-    {lvl: 1, gear: 0, facing: facing.west, color: '#c1272d', darkColor: '#991132', style: 'right: 2%; top: 53%; -webkit-transform: rotate(270deg)'},
-    {lvl: 1, gear: 0, facing: facing.west, color: '#f7931e', darkColor: '#cf7b19', style: 'right: 2%; top: 47%; -webkit-transform: rotate(270deg); margin-top: -30vw'}
+    {lvl: 1, gear: 0, position: 0, active: true, facing: facing.north, color: colors[0], style: 'left: 50%; margin-left: -15vw; bottom: 5%'},
+    {lvl: 1, gear: 0, position: 1, active: false, facing: facing.east, color: colors[1], style: 'left: 2%; top: 53%; -webkit-transform: rotate(90deg)'},
+    {lvl: 1, gear: 0, position: 2, active: false, facing: facing.east, color: colors[2], style: 'left: 2%; top: 47%; -webkit-transform: rotate(90deg); margin-top: -30vw'},
+    {lvl: 1, gear: 0, position: 3, active: false, facing: facing.south, color: colors[3], style: 'left: 50%; margin-left: -15vw; top: 5%; -webkit-transform: rotate(180deg)'},
+    {lvl: 1, gear: 0, position: 4, active: false, facing: facing.west, color: colors[4], style: 'right: 2%; top: 53%; -webkit-transform: rotate(270deg)'},
+    {lvl: 1, gear: 0, position: 5, active: false, facing: facing.west, color: colors[5], style: 'right: 2%; top: 47%; -webkit-transform: rotate(270deg); margin-top: -30vw'}
   ];
 
 });

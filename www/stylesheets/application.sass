@@ -7,6 +7,16 @@ body
 img
   max-width: 100%
 
+table
+  width: 100%
+  text-align: center
+
+td
+  vertical-align: middle
+
+svg
+  width: 100%
+
 .table
   position: absolute
   background-color: #E6E6E6
@@ -15,7 +25,7 @@ img
   height: 60%
   width: 50%
 
-.combat-table, .sheet-table
+.open-table
   top: 11%
   left: 15%
   height: 76%
@@ -49,15 +59,13 @@ img
   position: absolute
   text-align: center
   width: 30vw
+  min-height: 30vw
   z-index: 10
   color: #fff
 
-svg
-  transition: bottom 0.1s
-
-.active svg
-  position: relative
-  bottom: 5px
+.mp-empty
+  border: 1px dashed #aaa
+  background-color: rgba(0,0,0,0.25)
 
 .mp-counters
   position: absolute
@@ -90,19 +98,18 @@ svg
   bottom: 12.5%
   width: 100%
 
-  button
-    height: 10vw
-    width: 10vw
-    padding: 0
-    border: none
-    border-radius: 50%
-    color: #808080
-    background-color: #ccc
-    text-align: center
-    color: #fff
-    font-size: 5vw
-    line-height: 10vw
-    margin: 3vw 0
+.round-button
+  height: 10vw
+  width: 10vw
+  padding: 0
+  border: none
+  border-radius: 50%
+  color: #808080
+  background-color: #ccc
+  text-align: center
+  color: #fff
+  font-size: 5vw
+  margin: 1vw 0
 
 .combat-box:first-child
   top: 12.5%
@@ -117,14 +124,15 @@ svg
   margin-left: -5vw
   position: absolute
 
-.combat-power, .combat-increment, .combat-decrement
-  float: left
-  text-align: center
-
 .combat-power
   width: 60%
   font-size: 24vw
   line-height: 32vw
+  color: #666
+
+.lg-number
+  font-size: 20vw
+  line-height: 26vw
   color: #666
 
 .combat-increment, .combat-decrement
@@ -135,3 +143,7 @@ svg
 
 .combat-decrement
   text-align: right
+
+.sheet-meepo
+  margin: 5% auto
+  width: 60%

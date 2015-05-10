@@ -21,62 +21,100 @@
   <script src="/scripts/application.js"></script>
 </head>
 <body ng-app="SteroidsApplication">
-
 <div ng-controller="IndexController">
   <div style="position:absolute;left:0;right:0;z-index:5;width:100%;height:100%">
-    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box {{pPress ? 'active' : ''}}">
-      <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
-        <ellipse fill="{{player.color}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
-        <ellipse fill="{{player.darkColor}}" cx="100" cy="56" rx="56" ry="56"></ellipse>
-      </svg>
-      <table class="mp-counters">
-        <tr>
-          <td class="mp-level">{{player.lvl}}</td>
-        </tr>
-        <tr>
-          <td class="mp-gear">{{player.lvl + player.gear}}</td>
-        </tr>
-      </table>
+    <button class="round-button" hm-press='inPlayer = true'>1</button>
+    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" hm-tap='playerSheet(player.position); currentPlayer = player.position'>
+      <div ng-show='player.active'>
+        <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
+          <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
+          <ellipse fill="{{player.color[1]}}" cx="100" cy="56" rx="56" ry="56"></ellipse>
+        </svg>
+        <table class="mp-counters">
+          <tr>
+            <td class="mp-level">{{player.lvl}}</td>
+          </tr>
+          <tr>
+            <td class="mp-gear">{{player.lvl + player.gear}}</td>
+          </tr>
+        </table>        
+      </div>
     </div>
   </div>
 
-  <div class="vs-icon" hm-tap="inCombat = true" ng-hide="inCombat">
+  <div class="vs-icon" hm-tap="inCombat = true" ng-hide="inCombat || inPlayer">
     <img src="/assets/vs.png"/>
   </div>
 
   <!-- Combat/Sheet Table -->
-  <div class="{{inCombat || inSheet ? 'combat-table' : ''}} table">
-    <div class="close-icon" ng-show="inCombat || inSheet" hm-tap="inCombat = false; inSheet = false">x</div>
+  <div class="{{inCombat || inPlayer ? 'open-table' : ''}} table">
+    <div class="close-icon" ng-show="inCombat || inPlayer" hm-tap="inCombat = false; inPlayer = false">x</div>
     <div class="combat-container" ng-show="inCombat">
-      <div class="combat-box" ng-init="playerPower = 0">
-        <div class="combat-decrement">
-          <button hm-tap="playerPower = playerPower - 1">-1</button>
-          <button hm-tap="playerPower = playerPower - 5">-5</button>          
-        </div>
-        <div class="combat-power">{{playerPower}}</div>
-        <div class="combat-increment">
-          <button hm-tap="playerPower = playerPower + 1">+1</button>
-          <button hm-tap="playerPower = playerPower + 5">+5</button>
-        </div>
-      </div>
+      <table class="combat-box" ng-init="playerPower = 0">
+        <tr>
+          <td class="combat-decrement">
+            <button class="round-button" hm-tap="playerPower = playerPower - 1">-1</button>
+            <button class="round-button" hm-tap="playerPower = playerPower - 5">-5</button>          
+          </td>
+          <td class="combat-power">{{playerPower}}</td>
+          <td class="combat-increment">
+            <button class="round-button" hm-tap="playerPower = playerPower + 1">+1</button>
+            <button class="round-button" hm-tap="playerPower = playerPower + 5">+5</button>
+          </td>
+        </tr>
+      </table>
       <img class="combat-icon" src="/assets/vs.png"/>
-      <div class="combat-box" ng-init="monsterPower = 0">
-        <div class="combat-decrement">
-          <button hm-tap="monsterPower = monsterPower - 1">-1</button>
-          <button hm-tap="monsterPower = monsterPower - 5">-5</button>          
-        </div>
-        <div class="combat-power">{{monsterPower}}</div>
-        <div class="combat-increment">
-          <button hm-tap="monsterPower = monsterPower + 1">+1</button>
-          <button hm-tap="monsterPower = monsterPower + 5">+5</button>
-        </div>
-      </div>
+      <table class="combat-box" ng-init="monsterPower = 0">
+        <tr>
+          <td class="combat-decrement">
+            <button class="round-button" hm-tap="monsterPower = monsterPower - 1">-1</button>
+            <button class="round-button" hm-tap="monsterPower = monsterPower - 5">-5</button>          
+          </td>
+          <td class="combat-power">{{monsterPower}}</td>
+          <td class="combat-increment">
+            <button class="round-button" hm-tap="monsterPower = monsterPower + 1">+1</button>
+            <button class="round-button" hm-tap="monsterPower = monsterPower + 5">+5</button>
+          </td>
+        </tr>
+      </table>
     </div>
-    <div ng-show="inSheet">
-      <svg version="1.1" x="0" y="0" viewBox="0 0 236.3 261.9">
-        <path fill="#91BE4A" d="M118.1,89.8c65.2,0,118.1,48.4,118.1,108.1c0,28.9-52.9,64.1-118.1,64.1S0,224.4,0,197.9C0,138.2,52.9,89.8,118.1,89.8z"></path>
-        <circle fill="#75993C" cx="118.1" cy="66.2" r="66.2"></circle>
-      </svg>
+    <div ng-show="inPlayer">
+      <table>
+        <tr>
+          <td style="width:35%"></td>
+          <td style="width:30%">
+            <br/>
+            <svg version="1.1" x="0" y="0" viewBox="0 0 236.3 261.9">
+              <path fill="{{players[currentPlayer].color[0]}}" d="M118.1,89.8c65.2,0,118.1,48.4,118.1,108.1c0,28.9-52.9,64.1-118.1,64.1S0,224.4,0,197.9C0,138.2,52.9,89.8,118.1,89.8z"></path>
+              <circle fill="{{players[currentPlayer].color[1]}}" cx="118.1" cy="66.2" r="66.2"></circle>
+            </svg>            
+          </td>
+          <td style="width:35%"></td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <button class="round-button" ng-repeat="color in colors" style="background:{{color[0]}}" hm-tap="players[currentPlayer].color = color"></button>
+          </td>
+        </tr>
+        <tr>
+          <td><button class="round-button" hm-tap="players[currentPlayer].lvl = players[currentPlayer].lvl - 1">-1</button></td>
+          <td class="lg-number">{{players[currentPlayer].lvl}}</td>
+          <td><button class="round-button" hm-tap="players[currentPlayer].lvl = players[currentPlayer].lvl + 1">+1</button></td>
+        </tr>
+        <tr>
+          <td><button class="round-button" hm-tap="players[currentPlayer].gear = players[currentPlayer].gear - 1">-1</button></td>
+          <td class="lg-number">{{players[currentPlayer].gear}}</td>
+          <td><button class="round-button" hm-tap="players[currentPlayer].gear = players[currentPlayer].gear + 1">+1</button></td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <button ng-hide="players[currentPlayer].active" hm-tap="players[currentPlayer].active = true; inPlayer = false" class="button button-positive">Add</button>
+            <button ng-show="players[currentPlayer].active" hm-tap="players[currentPlayer].active = false; inPlayer = false" class="button button-assertive">Remove</button>
+          </td>
+        </tr>
+      </table>
+      <div class="sheet-meepo">
+      </div>
     </div>
   </div>
 
