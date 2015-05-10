@@ -1,0 +1,10 @@
+{
+  "name": "munchful",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "angular": "1.3.x",
+    "supersonic": "1.x",
+    "ryanmullins-angular-hammer": "~2.1.10"
+  }
+}

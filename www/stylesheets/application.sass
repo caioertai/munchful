@@ -1,0 +1,139 @@
+*
+  box-sizing: border-box
+
+body
+  background: #ccc
+
+img
+  max-width: 100%
+
+.table
+  position: absolute
+  background-color: #E6E6E6
+  top: 20%
+  left: 25%
+  height: 60%
+  width: 50%
+  transition: all 0.5s
+
+.combat-table, .sheet-table
+  top: 11%
+  left: 15%
+  height: 76%
+  width: 70%
+  z-index: 20
+
+.vs-icon
+  transition: all 0.5s
+  position: absolute
+  z-index: 10
+  top: 50%
+  left: 50%
+  height: 80px
+  width: 80px
+  margin-left: -40px
+  margin-top: -40px
+
+.close-icon
+  position: absolute
+  top: -20px
+  right: -20px
+  height: 40px
+  width: 40px
+  border-radius: 50%
+  background-color: #808080
+  text-align: center
+  color: #fff
+  font-size: 30px
+  line-height: 35px
+
+.mp-box
+  position: absolute
+  text-align: center
+  width: 30vw
+  z-index: 10
+  color: #fff
+
+svg
+  transition: bottom 0.1s
+
+.active svg
+  position: relative
+  bottom: 5px
+
+.mp-counters
+  position: absolute
+  vertical-align: middle
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+
+.mp-level
+  vertical-align: middle
+  height: 16.8vw
+  font-size: 9vw
+
+.mp-gear
+  vertical-align: middle
+  height: 8vw
+  font-size: 5vw
+
+.combat-container
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+
+.combat-box
+  overflow: hidden
+  position: absolute
+  bottom: 12.5%
+  width: 100%
+
+  button
+    height: 10vw
+    width: 10vw
+    padding: 0
+    border: none
+    border-radius: 50%
+    color: #808080
+    background-color: #ccc
+    text-align: center
+    color: #fff
+    font-size: 5vw
+    line-height: 10vw
+    margin: 3vw 0
+
+.combat-box:first-child
+  top: 12.5%
+  bottom: auto
+
+.combat-icon
+  height: 10vw
+  width: 10vw
+  top: 50%
+  left: 50%
+  margin-top: -5vw
+  margin-left: -5vw
+  position: absolute
+
+.combat-power, .combat-increment, .combat-decrement
+  float: left
+  text-align: center
+
+.combat-power
+  width: 60%
+  font-size: 24vw
+  line-height: 32vw
+  color: #666
+
+.combat-increment, .combat-decrement
+  width: 20%
+
+.combat-increment
+  text-align: left
+
+.combat-decrement
+  text-align: right
