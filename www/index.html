@@ -4,7 +4,7 @@
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
 
-  <title>My Steroids App</title>
+  <title>Munchful Table</title>
 
   <link rel="stylesheet" href="/components/supersonic/css/supersonic.css">
   <link rel="stylesheet" href="/stylesheets/application.css">
@@ -24,29 +24,29 @@
 
 <div ng-controller="IndexController">
   <div style="position:absolute;left:0;right:0;z-index:5;width:100%;height:100%">
-    <div ng-repeat='player in players' ng-init="pLevel = 1; pGear = 0" style="{{player.style}}" class="mp-box {{pPress ? 'active' : ''}}">
+    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box {{pPress ? 'active' : ''}}">
       <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
         <ellipse fill="{{player.color}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
         <ellipse fill="{{player.darkColor}}" cx="100" cy="56" rx="56" ry="56"></ellipse>
       </svg>
       <table class="mp-counters">
         <tr>
-          <td class="mp-level">{{pLevel}}</td>
+          <td class="mp-level">{{player.lvl}}</td>
         </tr>
         <tr>
-          <td class="mp-gear">{{pLevel + pGear}}</td>
+          <td class="mp-gear">{{player.lvl + player.gear}}</td>
         </tr>
       </table>
     </div>
   </div>
 
-  <div class="vs-icon" hm-tap="openCombat" ng-hide="inCombat">
+  <div class="vs-icon" hm-tap="inCombat = true" ng-hide="inCombat">
     <img src="/assets/vs.png"/>
   </div>
 
-  <div id="table" class="{{inCombat ? 'combat-table' : ''}} {{inSheet ? 'sheet-table' : ''}} table" ng-init="inCombat">
-
-    <div class="close-icon" ng-show="inCombat" hm-tap="closeTable">x</div>
+  <!-- Combat/Sheet Table -->
+  <div class="{{inCombat || inSheet ? 'combat-table' : ''}} table">
+    <div class="close-icon" ng-show="inCombat || inSheet" hm-tap="inCombat = false; inSheet = false">x</div>
     <div class="combat-container" ng-show="inCombat">
       <div class="combat-box" ng-init="playerPower = 0">
         <div class="combat-decrement">
@@ -72,15 +72,14 @@
         </div>
       </div>
     </div>
-
     <div ng-show="inSheet">
       <svg version="1.1" x="0" y="0" viewBox="0 0 236.3 261.9">
         <path fill="#91BE4A" d="M118.1,89.8c65.2,0,118.1,48.4,118.1,108.1c0,28.9-52.9,64.1-118.1,64.1S0,224.4,0,197.9C0,138.2,52.9,89.8,118.1,89.8z"></path>
         <circle fill="#75993C" cx="118.1" cy="66.2" r="66.2"></circle>
       </svg>
     </div>
-
   </div>
+
 </div>
 
 </body>
