@@ -24,7 +24,7 @@
 <div ng-controller="IndexController">
   <div style="position:absolute;left:0;right:0;z-index:5;width:100%;height:100%">
     <button class="round-button" hm-press='inPlayer = true'>1</button>
-    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" hm-tap='playerSheet(player.position); currentPlayer = player.position'>
+    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" hm-tap='playerSheet(player.position); currentPlayer = player.position' hm-swipeup="combatFlick(player)">
       <div ng-show='player.active'>
         <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
           <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
@@ -56,14 +56,19 @@
             <button class="round-button" hm-tap="playerPower = playerPower - 1">-1</button>
             <button class="round-button" hm-tap="playerPower = playerPower - 5">-5</button>          
           </td>
-          <td class="combat-power">{{playerPower}}</td>
+          <td class="combat-power" style="color:{{combatants[0].color[0]}}">{{playerPower}}</td>
           <td class="combat-increment">
             <button class="round-button" hm-tap="playerPower = playerPower + 1">+1</button>
             <button class="round-button" hm-tap="playerPower = playerPower + 5">+5</button>
           </td>
         </tr>
+        <tr>
+          <td colspan="3">
+            <button class="round-button" ng-repeat="combatant in combatants" hm-swipe="combatRemove(combatant)" style="background:{{combatant.color[0]}}">{{combatant.lvl}}</button>
+          </td>
+        </tr>
       </table>
-      <img class="combat-icon" src="/assets/vs.png"/>
+        <img class="combat-icon" src="/assets/vs.png"/>
       <table class="combat-box" ng-init="monsterPower = 0">
         <tr>
           <td class="combat-decrement">

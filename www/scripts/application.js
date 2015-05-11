@@ -13,9 +13,22 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.currentPlayer = 0;
 
   $scope.playerSheet = function(position){
-    $scope.inPlayer = true;
-    $scope.currentPlayer = position;
+    if(!$scope.inCombat){
+      $scope.inPlayer = true;
+      $scope.currentPlayer = position;      
+    }
   };
+
+  $scope.combatFlick = function(player){
+    if(!$scope.inPlayer && $scope.combatants.indexOf(player) < 0){
+      $scope.inCombat = true;
+      $scope.combatants.push(player);
+    };
+  };
+
+  $scope.combatRemove = function(combatant){
+    $scope.combatants.splice($scope.combatants.indexOf(combatant), 1);
+  }
 
   // Players directions
   var direction = {
@@ -50,5 +63,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     {lvl: 1, gear: 0, position: 4, active: false, facing: facing.west, color: colors[4], style: 'right: 2%; top: 53%; -webkit-transform: rotate(270deg)'},
     {lvl: 1, gear: 0, position: 5, active: false, facing: facing.west, color: colors[5], style: 'right: 2%; top: 47%; -webkit-transform: rotate(270deg); margin-top: -30vw'}
   ];
+
+  $scope.combatants = [];
 
 });
