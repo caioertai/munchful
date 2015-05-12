@@ -11,6 +11,8 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.inCombat = false;
   $scope.inPlayer = false;
   $scope.currentPlayer = 0;
+  $scope.playerBonus = 0;
+  $scope.monsterPower = 10;
 
   $scope.playerSheet = function(position){
     if(!$scope.inCombat){
@@ -22,6 +24,8 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.combatFlick = function(player){
     if (!$scope.inCombat) {
       $scope.combatants = [];
+      $scope.playerBonus = 0;
+      $scope.monsterPower = 10;
       $scope.combatants.push(player);
       $scope.inCombat = true;      
     } else {

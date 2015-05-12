@@ -49,7 +49,7 @@
   <div class="{{inCombat || inPlayer ? 'open-table' : ''}} table">
     <div class="close-icon" ng-show="inCombat || inPlayer" hm-tap="inCombat = false; inPlayer = false">x</div>
     <div class="combat-container" ng-show="inCombat">
-      <table class="combat-box" ng-init="playerBonus = 0">
+      <table class="combat-box">
         <tr>
           <td class="combat-decrement">
             <button class="round-button" hm-tap="playerBonus = playerBonus - 1">-1</button>
@@ -63,12 +63,12 @@
         </tr>
         <tr>
           <td colspan="3">
-            <button class="round-button" ng-repeat="combatant in combatants" hm-swipe="combatRemove(combatant)" style="background:{{combatant.color[0]}}">{{combatant.lvl}}</button>
+            <button class="round-button" ng-repeat="combatant in combatants" hm-pan="combatRemove(combatant)" style="background:{{combatant.color[0]}}">{{combatant.lvl}}</button>
           </td>
         </tr>
       </table>
         <img class="combat-icon" src="/assets/vs.png"/>
-      <table class="combat-box" ng-init="monsterPower = 0">
+      <table class="combat-box">
         <tr>
           <td colspan="3">
             <img src="/assets/monster.png" class="round-button" style="top: 1.5vw;position:relative" />
