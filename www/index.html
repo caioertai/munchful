@@ -24,7 +24,7 @@
 <div ng-controller="IndexController">
   <div style="position:absolute;left:0;right:0;z-index:5;width:100%;height:100%">
     <button class="round-button" hm-press='inPlayer = true'>1</button>
-    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" hm-tap='playerSheet(player.position); currentPlayer = player.position' hm-swipeup="combatFlick(player)">
+    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" hm-tap='playerSheet(player.position); currentPlayer = player.position' hm-swipeup="{{player.facing[0]}}" hm-swiperight="{{player.facing[1]}}" hm-swipedown="{{player.facing[2]}}" hm-swipeleft="{{player.facing[3]}}">
       <div ng-show='player.active'>
         <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
           <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>

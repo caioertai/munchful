@@ -32,10 +32,14 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
 
   // Players directions
   var direction = {
-    up: "pLevel = pLevel + 1", 
-    down: "pLevel = pLevel - 1", 
-    right: "pGear = pGear + 1", 
-    left: "pGear = pGear - 1"
+    up: "combatFlick(player)", 
+    down: "", 
+    right: "", 
+    left: ""
+    // up: "pLevel = pLevel + 1", 
+    // down: "pLevel = pLevel - 1", 
+    // right: "pGear = pGear + 1", 
+    // left: "pGear = pGear - 1"
   };
 
   var facing = {
