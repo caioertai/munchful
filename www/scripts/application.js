@@ -20,9 +20,15 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   };
 
   $scope.combatFlick = function(player){
-    if(!$scope.inPlayer && $scope.combatants.indexOf(player) < 0){
-      $scope.inCombat = true;
+    if (!$scope.inCombat) {
+      $scope.combatants = [];
       $scope.combatants.push(player);
+      $scope.inCombat = true;      
+    } else {
+      if (!$scope.inPlayer && $scope.combatants.indexOf(player) < 0) {
+        $scope.combatants.push(player);
+        $scope.inCombat = true;
+      };
     };
   };
 

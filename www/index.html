@@ -50,16 +50,16 @@
   <div class="{{inCombat || inPlayer ? 'open-table' : ''}} table">
     <div class="close-icon" ng-show="inCombat || inPlayer" hm-tap="inCombat = false; inPlayer = false">x</div>
     <div class="combat-container" ng-show="inCombat">
-      <table class="combat-box" ng-init="playerPower = 0">
+      <table class="combat-box" ng-init="playerBonus = 0">
         <tr>
           <td class="combat-decrement">
-            <button class="round-button" hm-tap="playerPower = playerPower - 1">-1</button>
-            <button class="round-button" hm-tap="playerPower = playerPower - 5">-5</button>          
+            <button class="round-button" hm-tap="playerBonus = playerBonus - 1">-1</button>
+            <button class="round-button" hm-tap="playerBonus = playerBonus - 5">-5</button>          
           </td>
-          <td class="combat-power" style="color:{{combatants[0].color[0]}}">{{playerPower}}</td>
+          <td class="combat-power" style="color:{{combatants[0].color[0]}}">{{combatants[0].lvl + combatants[1].lvl + combatants[2].lvl + combatants[3].lvl + combatants[4].lvl + combatants[5].lvl + combatants[0].gear + combatants[1].gear + combatants[2].gear + combatants[3].gear + combatants[4].gear + combatants[5].gear + playerBonus}}</td>
           <td class="combat-increment">
-            <button class="round-button" hm-tap="playerPower = playerPower + 1">+1</button>
-            <button class="round-button" hm-tap="playerPower = playerPower + 5">+5</button>
+            <button class="round-button" hm-tap="playerBonus = playerBonus + 1">+1</button>
+            <button class="round-button" hm-tap="playerBonus = playerBonus + 5">+5</button>
           </td>
         </tr>
         <tr>
