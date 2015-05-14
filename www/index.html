@@ -22,8 +22,10 @@
 </head>
 <body ng-app="SteroidsApplication">
 <div ng-controller="IndexController">
+  <button id="cursor" class="round-button" style="background:#a00"></button>
   <div style="position:absolute;left:0;right:0;z-index:5;width:100%;height:100%">
-    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" ng-click='playerSheet(player.position); currentPlayer = player.position' hm-panup="{{player.facing[0]}}" hm-panright="{{player.facing[1]}}" hm-pandown="{{player.facing[2]}}" hm-panleft="{{player.facing[3]}}">
+    <!-- <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" ng-click='playerSheet(player.position); currentPlayer = player.position' hm-panup="{{player.facing[0]}}" hm-panright="{{player.facing[1]}}" hm-pandown="{{player.facing[2]}}" hm-panleft="{{player.facing[3]}}" hm-pan="flmouse(player.color[0])"> -->
+    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" ng-click='playerSheet(player.position); currentPlayer = player.position' hm-pan="flmouse(player.color[0])" hm-panend="positionCheck">
       <div ng-show='player.active'>
         <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
           <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>

@@ -80,4 +80,17 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
 
   $scope.combatants = [];
 
+  var cursor = document.getElementById('cursor');
+
+  window.addEventListener('touchmove', function(event){
+    $scope.mx = event.pageX;
+    $scope.my = event.pageY;
+  }, false);
+
+  $scope.flmouse = function(pColor){
+    cursor.style.left = $scope.mx + 'px';
+    cursor.style.top = $scope.my + 'px';
+    cursor.style.background = pColor;
+  };
+
 });
