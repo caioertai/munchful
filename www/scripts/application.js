@@ -21,7 +21,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     }
   };
 
-  $scope.combatFlick = function(player){
+  var combatFlick = function(player){
     if (!$scope.inCombat) {
       $scope.combatants = [];
       $scope.playerBonus = 0;
@@ -80,7 +80,23 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
 
   $scope.combatants = [];
 
+
+  // Elements and position functions
+  var vsCircle = document.getElementById('vs-icon');
+  var vsCirclePos = [vsCircle.offsetLeft, vsCircle.offsetLeft + vsCircle.offsetWidth, vsCircle.offsetTop, vsCircle.offsetTop + vsCircle.offsetHeight];
   var cursor = document.getElementById('cursor');
+
+  $scope.panOn = false;
+
+  $scope.positionCheck = function(player) {
+    $scope.panOn = false;
+    if (vsCirclePos[0] < $scope.mx && $scope.mx < vsCirclePos[1] && vsCirclePos[2] < $scope.my && $scope.my < vsCirclePos[3]) {
+      $scope.inCombat = true;
+      combatFlick(player);
+      cursor.style.left = '-100px';
+      cursor.style.top = '-100px';
+    }
+  }
 
   window.addEventListener('touchmove', function(event){
     $scope.mx = event.pageX;
@@ -88,6 +104,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   }, false);
 
   $scope.flmouse = function(pColor){
+    $scope.panOn = true;
     cursor.style.left = $scope.mx + 'px';
     cursor.style.top = $scope.my + 'px';
     cursor.style.background = pColor;
