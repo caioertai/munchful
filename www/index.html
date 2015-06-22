@@ -24,24 +24,9 @@
 <div ng-controller="IndexController">
   <!-- <div id="radial-menu" style="left:{{radialLeft}}px;top:{{radialTop}}px" ng-show="panOn"></div> -->
   <button id="cursor" class="round-button" style="background:{{cursorBg}};left:{{mx}}px;top:{{my}}px" ng-show="panOn"></button>
-  <div class="player-container" id="teste1">
-    <div ng-repeat='player in players' style="{{player.style}}" class="mp-box" ng-click='playerSheet($index); currentPlayer = $index' hm-panstart="radialOn(player)" hm-pan="flmouse(player)" hm-panend="positionCheck(player)">
-      <div ng-show='player.active'>
-        <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
-          <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
-          <ellipse fill="{{player.color[1]}}" cx="100" cy="56" rx="56" ry="56"></ellipse>
-        </svg>
-        <table class="mp-counters">
-          <tr>
-            <td class="mp-level">{{player.lvl}}</td>
-          </tr>
-          <tr>
-            <td class="mp-gear">{{player.lvl + player.gear}}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
+
+  <!-- Player Meepos -->
+  <div class="player-container" ng-include="'player.html'"></div>
 
   <div id='vs-icon' class="vs-icon {{panOn ? 'panon' : ''}}" ng-click="inCombat = true" ng-hide="inCombat || inPlayer">
     <img src="/assets/vs.png"/>
@@ -54,13 +39,13 @@
       <table class="combat-box">
         <tr>
           <td class="combat-decrement">
-            <button class="round-button" ng-click="playerBonus = playerBonus - 1">-1</button>
-            <button class="round-button" ng-click="playerBonus = playerBonus - 5">-5</button>
+            <button class="round-button" ng-click="setPlayerBonus(-1)">-1</button>
+            <button class="round-button" ng-click="setPlayerBonus(-5)">-5</button>
           </td>
           <td class="combat-power" style="color:{{combatants[0].color[0]}}">{{combatants[0].lvl + combatants[1].lvl + combatants[2].lvl + combatants[3].lvl + combatants[4].lvl + combatants[5].lvl + combatants[0].gear + combatants[1].gear + combatants[2].gear + combatants[3].gear + combatants[4].gear + combatants[5].gear + playerBonus}}</td>
           <td class="combat-increment">
-            <button class="round-button" ng-click="playerBonus = playerBonus + 1">+1</button>
-            <button class="round-button" ng-click="playerBonus = playerBonus + 5">+5</button>
+            <button class="round-button" ng-click="setPlayerBonus(+1)">+1</button>
+            <button class="round-button" ng-click="setPlayerBonus(+5)">+5</button>
           </td>
         </tr>
         <tr>
@@ -78,13 +63,13 @@
         </tr>
         <tr>
           <td class="combat-decrement">
-            <button class="round-button" ng-click="monsterPower = monsterPower - 1">-1</button>
-            <button class="round-button" ng-click="monsterPower = monsterPower - 5">-5</button>
+            <button class="round-button" ng-click="setMonsterPower(-1)">-1</button>
+            <button class="round-button" ng-click="setMonsterPower(-5)">-5</button>
           </td>
           <td class="combat-power">{{monsterPower}}</td>
           <td class="combat-increment">
-            <button class="round-button" ng-click="monsterPower = monsterPower + 1">+1</button>
-            <button class="round-button" ng-click="monsterPower = monsterPower + 5">+5</button>
+            <button class="round-button" ng-click="setMonsterPower(+1)">+1</button>
+            <button class="round-button" ng-click="setMonsterPower(+5)">+5</button>
           </td>
         </tr>
       </table>
@@ -124,8 +109,7 @@
           </td>
         </tr>
       </table>
-      <div class="sheet-meepo">
-      </div>
+      <div class="sheet-meepo"></div>
     </div>
   </div>
 

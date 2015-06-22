@@ -11,8 +11,16 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.inCombat = false;
   $scope.inPlayer = false;
   $scope.currentPlayer = 0;
+
   $scope.playerBonus = 0;
+  $scope.setPlayerBonus = function(valChange) {
+  $scope.playerBonus = $scope.playerBonus + valChange;
+  };
+
   $scope.monsterPower = 10;
+  $scope.setMonsterPower = function(valChange) {
+  $scope.monsterPower = $scope.monsterPower + valChange;
+  };
 
   $scope.playerSheet = function(position){
     if(!$scope.inCombat){
@@ -32,13 +40,13 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       } else if ($scope.combatants.indexOf(player) < 0) {
         $scope.combatants.push(player);
         $scope.inCombat = true;
-      };
-    };
+      }
+    }
   };
 
   $scope.combatRemove = function(combatant){
     $scope.combatants.splice($scope.combatants.indexOf(combatant), 1);
-  }
+  };
 
   // Players directions
   var direction = {
@@ -53,7 +61,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     east: [direction.left, direction.up, direction.right, direction.down],
     south: [direction.down, direction.left, direction.up, direction.right],
     west: [direction.right, direction.down, direction.left, direction.up]
-  }
+  };
 
   var colors = [
     ['#0087CA', '#006ca6'],
@@ -94,18 +102,18 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       $scope.mx = -100;
       $scope.my = -100;
 
-    };
-  }
+    }
+  };
 
   $scope.radialOn = function(player) {
     $scope.panOn = true;
     $scope.cursorBg = player.color[0];
-  }
+  };
 
   // Cursor
   $scope.mx = -100;
   $scope.my = -100;
-  $scope.cursorBg = '#a00'
+  $scope.cursorBg = '';
   window.addEventListener('touchmove', function(event){
     $scope.mx = event.touches[0].pageX;
     $scope.my = event.touches[0].pageY;
