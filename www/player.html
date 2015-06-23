@@ -1,4 +1,4 @@
-<div ng-repeat='player in players' style="{{player.style}}" class="mp-box" ng-click='playerSheet($index); currentPlayer = $index' hm-panstart="radialOn(player)" hm-pan="flmouse(player)" hm-panend="positionCheck(player)">
+<div ng-repeat='player in players' style="{{getMeepoStyle(player.position)}}" class="mp-box" ng-click='playerSheet($index); currentPlayer = $index' hm-panstart="radialOn(player)" hm-pan="flmouse(player)" hm-panend="positionCheck(player)">
   <div ng-show='player.active'>
     <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
       <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
