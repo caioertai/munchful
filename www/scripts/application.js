@@ -56,13 +56,6 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     left: ""
   };
 
-  var facing = {
-    north: [direction.up, direction.right, direction.down, direction.left],
-    east: [direction.left, direction.up, direction.right, direction.down],
-    south: [direction.down, direction.left, direction.up, direction.right],
-    west: [direction.right, direction.down, direction.left, direction.up]
-  };
-
   var colors = [
     ['#0087CA', '#006ca6'],
     ['#86328C', '#642568'],
@@ -76,15 +69,27 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var appHeight = window.innerHeight;
 
   $scope.players = [
-    {lvl: 1, gear: 0, position: 0, active: true, facing: facing.north, color: colors[0], style: 'left:' + appWidth/2 + 'px; margin-left: -' + appWidth*0.15 + 'px; bottom:' + appWidth*0.05 + 'px;margin-top:' + appWidth*0.1275 + 'px'},
-    {lvl: 1, gear: 0, position: 1, active: false, facing: facing.east, color: colors[1], style: 'left: 2%; top: 53%; -webkit-transform: rotate(90deg)'},
-    {lvl: 1, gear: 0, position: 2, active: false, facing: facing.east, color: colors[2], style: 'left: 2%; top: 47%; -webkit-transform: rotate(90deg); margin-top: -30vw'},
-    {lvl: 1, gear: 0, position: 3, active: false, facing: facing.south, color: colors[3], style: 'left: 50%; margin-left: -15vw; top: 5%; -webkit-transform: rotate(180deg)'},
-    {lvl: 1, gear: 0, position: 4, active: false, facing: facing.west, color: colors[4], style: 'right: 2%; top: 53%; -webkit-transform: rotate(270deg)'},
-    {lvl: 1, gear: 0, position: 5, active: false, facing: facing.west, color: colors[5], style: 'right: 2%; top: 47%; -webkit-transform: rotate(270deg); margin-top: -30vw'}
+    {lvl: 1, gear: 0, position: [appWidth*0.50, appHeight*0.86, 0], active: true, color: colors[0]},
+    {lvl: 1, gear: 0, position: [appWidth*0.16, appHeight*0.65, 90], active: true, color: colors[1]},
+    {lvl: 1, gear: 0, position: [appWidth*0.16, appHeight*0.35, 90], active: true, color: colors[2]},
+    {lvl: 1, gear: 0, position: [appWidth*0.50, appHeight*0.14, 180], active: true, color: colors[3]},
+    {lvl: 1, gear: 0, position: [appWidth*0.84, appHeight*0.35, 270], active: true, color: colors[4]},
+    {lvl: 1, gear: 0, position: [appWidth*0.84, appHeight*0.65, 270], active: true, color: colors[5]}
   ];
 
   $scope.combatants = [];
+
+  $scope.getMeepoStyle = function(position) {
+    var marginFix = -appWidth*0.15;
+    var posX = position[0] + marginFix;
+    var posY = position[1] + marginFix;
+    var rotation = position[2];
+    return 'left:' + posX + 'px; top:' + posY + 'px; -webkit-transform: rotate(' + rotation + 'deg)';
+  };
+
+  $scope.setRadialPositions = function() {
+
+  };
 
 
   // Elements and position functions
