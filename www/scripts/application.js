@@ -14,6 +14,21 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.playerBonus = 0;
   $scope.monsterPower = 10;
 
+
+  $scope.monsterTier = function() {
+    if ($scope.monsterPower < 8)  {
+      return 1;
+    } else if ($scope.monsterPower < 16) {
+      return 2;
+    } else if ($scope.monsterPower < 24) {
+      return 3;
+    } else if ($scope.monsterPower < 32) {
+      return 4;
+    } else {
+      return 5;
+    }
+  };
+
   $scope.playerSheet = function(position){
     if(!$scope.inCombat){
       $scope.inPlayer = true;
