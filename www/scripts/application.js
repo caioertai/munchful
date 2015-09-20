@@ -73,9 +73,9 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var colors = [
     ['#0087CA', '#006ca6'],
     ['#86328C', '#642568'],
-    ['#F15A24', '#cc4c1e'],
     ['#91be4a', '#75993c'],
     ['#c1272d', '#991132'],
+    ['#f763a2', '#d9578e'],
     ['#f7931e', '#cf7b19']
   ];
 
