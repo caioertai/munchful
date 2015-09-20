@@ -79,20 +79,28 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     ['#f7931e', '#cf7b19']
   ];
 
-  var appWidth = window.innerWidth;
-  var appHeight = window.innerHeight;
+  var appWidth      = window.innerWidth;
+  var appHeight     = window.innerHeight;
+
+  var xLeft         = appWidth * 0.15 - appHeight * 0.083;
+  var xMiddle       = appWidth * 0.50 - appWidth  * 0.15;
+  var xRight        = appWidth * 0.85 - appHeight * 0.083;
+
+  var yTop          = appHeight * 0.86 - appHeight * 0.083;
+  var yTopMiddle    = appHeight * 0.63 - appWidth  * 0.135;
+  var yBottomMiddle = appHeight * 0.37 - appWidth  * 0.135;
+  var yBottom       = appHeight * 0.14 - appHeight * 0.083;
 
   $scope.players = [
-    {lvl: 1, gear: 0, position: 0, active: true, facing: facing.north, color: colors[0], style: 'left:' + appWidth/2 + 'px; margin-left: -' + appWidth*0.15 + 'px; bottom:' + appWidth*0.05 + 'px;margin-top:' + appWidth*0.1275 + 'px'},
-    {lvl: 1, gear: 0, position: 1, active: false, facing: facing.east, color: colors[1], style: 'left: 2%; top: 53%; -webkit-transform: rotate(90deg)'},
-    {lvl: 1, gear: 0, position: 2, active: false, facing: facing.east, color: colors[2], style: 'left: 2%; top: 47%; -webkit-transform: rotate(90deg); margin-top: -30vw'},
-    {lvl: 1, gear: 0, position: 3, active: false, facing: facing.south, color: colors[3], style: 'left: 50%; margin-left: -15vw; top: 5%; -webkit-transform: rotate(180deg)'},
-    {lvl: 1, gear: 0, position: 4, active: false, facing: facing.west, color: colors[4], style: 'right: 2%; top: 53%; -webkit-transform: rotate(270deg)'},
-    {lvl: 1, gear: 0, position: 5, active: false, facing: facing.west, color: colors[5], style: 'right: 2%; top: 47%; -webkit-transform: rotate(270deg); margin-top: -30vw'}
+    {lvl: 1, gear: 0, active: true, facing: facing.north, color: colors[0], position: [xMiddle, yBottom,         0]},
+    {lvl: 1, gear: 0, active: true, facing: facing.east,  color: colors[1], position: [xLeft,   yBottomMiddle,  90]},
+    {lvl: 1, gear: 0, active: true, facing: facing.east,  color: colors[2], position: [xLeft,   yTopMiddle,     90]},
+    {lvl: 1, gear: 0, active: true, facing: facing.south, color: colors[3], position: [xMiddle, yTop,          180]},
+    {lvl: 1, gear: 0, active: true, facing: facing.west,  color: colors[4], position: [xRight,  yTopMiddle,    270]},
+    {lvl: 1, gear: 0, active: true, facing: facing.west,  color: colors[5], position: [xRight,  yBottomMiddle, 270]}
   ];
 
   $scope.combatants = [];
-
 
   // Elements and position functions
   var vsCircle = document.getElementById('vs-icon');
