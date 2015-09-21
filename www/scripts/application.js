@@ -82,14 +82,14 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var appWidth      = window.innerWidth;
   var appHeight     = window.innerHeight;
 
-  var xLeft         = appWidth * 0.15 - appHeight * 0.083;
+  var xLeft         = appWidth * 0.15 - appWidth * 0.15;
   var xMiddle       = appWidth * 0.50 - appWidth  * 0.15;
-  var xRight        = appWidth * 0.85 - appHeight * 0.083;
+  var xRight        = appWidth * 0.85 - appWidth * 0.15;
 
-  var yTop          = appHeight * 0.86 - appHeight * 0.083;
+  var yTop          = appHeight * 0.86 - appWidth * 0.135;
   var yTopMiddle    = appHeight * 0.63 - appWidth  * 0.135;
   var yBottomMiddle = appHeight * 0.37 - appWidth  * 0.135;
-  var yBottom       = appHeight * 0.14 - appHeight * 0.083;
+  var yBottom       = appHeight * 0.14 - appWidth * 0.135;
 
   $scope.players = [
     {lvl: 1, gear: 0, active: true, facing: facing.north, color: colors[0], position: [xMiddle, yBottom,         0]},
