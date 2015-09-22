@@ -12,7 +12,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.inPlayer = false;
   $scope.currentPlayer = 0;
   $scope.playerBonus = 0;
-  $scope.monsterPower = 10;
+  $scope.monsterPower = 5;
 
 
   $scope.monsterTier = function() {
@@ -41,7 +41,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       if (!$scope.inCombat) {
         $scope.combatants = [];
         $scope.playerBonus = 0;
-        $scope.monsterPower = 10;
+        $scope.monsterPower = 5;
         $scope.combatants.push(player);
         $scope.inCombat = true;
       } else if ($scope.combatants.indexOf(player) < 0) {
@@ -104,20 +104,31 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var gearDown = document.getElementById('gear-down');
   var gearDownPos = [gearDown.offsetLeft, gearDown.offsetLeft + gearDown.offsetWidth, gearDown.offsetTop, gearDown.offsetTop + gearDown.offsetHeight];
 
+  var trashZone = document.getElementById('trash-zone');
+  var trashZonePos = [trashZone.offsetLeft, trashZone.offsetLeft + trashZone.offsetWidth, trashZone.offsetTop, trashZone.offsetTop + trashZone.offsetHeight];
+
   $scope.panOn = false;
+
+  function areaCalc(positionArr) {
+    return positionArr[0] < $scope.mx && $scope.mx < positionArr[1] && positionArr[2] < $scope.my && $scope.my < positionArr[3];
+  }
 
   $scope.positionCheck = function(player) {
     $scope.panOn = false;
-    if (vsCirclePos[0] < $scope.mx && $scope.mx < vsCirclePos[1] && vsCirclePos[2] < $scope.my && $scope.my < vsCirclePos[3]) {
+    if (areaCalc(vsCirclePos)) {
       combatMove(player);
-    } else if (lvlUpPos[0] < $scope.mx && $scope.mx < lvlUpPos[1] && lvlUpPos[2] < $scope.my && $scope.my < lvlUpPos[3]) {
+    } else if (areaCalc(lvlUpPos)) {
       player.lvl++;
-    } else if (lvlDownPos[0] < $scope.mx && $scope.mx < lvlDownPos[1] && lvlDownPos[2] < $scope.my && $scope.my < lvlDownPos[3]) {
+    } else if (areaCalc(lvlDownPos)) {
       player.lvl--;
-    } else if (gearUpPos[0] < $scope.mx && $scope.mx < gearUpPos[1] && gearUpPos[2] < $scope.my && $scope.my < gearUpPos[3]) {
+    } else if (areaCalc(gearUpPos)) {
       player.gear++;
-    } else if (gearDownPos[0] < $scope.mx && $scope.mx < gearDownPos[1] && gearDownPos[2] < $scope.my && $scope.my < gearDownPos[3]) {
+    } else if (areaCalc(gearDownPos)) {
       player.gear--;
+    } else if (areaCalc(trashZonePos)) {
+      player.active = false;
+      player.lvl = 0;
+      player.gear = 0;
     };
 
     // To avoid cursor jitter

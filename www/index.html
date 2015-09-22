@@ -44,23 +44,23 @@
   </div>
 
   <overlay ng-show="panOn"></overlay>
+  <div class="vs-icon" ng-click="inCombat = true">
+    <img src="/assets/vs.png"/>
+  </div>
   <panon-table id='panon-table' class="{{panOn ? 'panon-table-up' : ''}}" style="background:{{cursorBg}};">
-    <div id='vs-icon' class="vs-icon" ng-click="inCombat = true">
+    <div id='vs-icon' class="vs-icon panon-table">
       <img src="/assets/vs.png"/>
     </div>
     <button id='lvl-up' class="player-button level-up">+1</button>
     <button id='lvl-down' class="player-button level-down">-1</button>
     <button id='gear-up' class="player-button gear-up">+1</button>
     <button id='gear-down' class="player-button gear-down">-1</button>
-  </panon-table>
 
-  <!-- <div>
-  <div id='vs-icon' class="vs-icon {{panOn ? 'panon' : ''}}" ng-click="inCombat = true" ng-hide="inCombat || inPlayer">
-    <img src="/assets/vs.png"/>
-  </div>
-  <button id='lvl-up' class="player-button level-up">+1</button>
-  <button id='lvl-down' class="player-button level-down">-1</button>
-  </div> -->
+    <div id='trash-zone' class="trash-zone">
+      <img src="/assets/trashcan.png"/>
+    </div>
+    <!-- <button id='gear-down' class="player-button gear-down">-1</button> -->
+  </panon-table>
 
   <!-- Combat/Sheet Table -->
   <div class="{{inCombat || inPlayer ? 'open-table' : ''}} table">
@@ -80,7 +80,7 @@
         </tr>
         <tr>
           <td colspan="3">
-            <button class="round-button" ng-repeat="combatant in combatants" hm-pan="combatRemove(combatant)" style="background:{{combatant.color[0]}}">{{combatant.lvl}}</button>
+            <button class="round-button fight-button" ng-repeat="combatant in combatants" hm-pan="combatRemove(combatant)" style="background:{{combatant.color[0]}}">{{combatant.lvl}}</button>
           </td>
         </tr>
       </table>
@@ -88,7 +88,7 @@
       <table class="combat-box">
         <tr>
           <td colspan="3">
-            <img src="/assets/{{monsterTier()}}.png" class="round-button" style="top: 1.5vw;position:relative" />
+            <img src="/assets/{{monsterTier()}}.png" class="round-button fight-button" style="top: 1.5vw;position:relative" />
           </td>
         </tr>
         <tr>
