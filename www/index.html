@@ -47,14 +47,14 @@
   <div class="vs-icon" ng-click="inCombat = true">
     <img src="/assets/vs.png"/>
   </div>
-  <panon-table id='panon-table' class="{{panOn ? 'panon-table-up' : ''}}" style="background:{{cursorBg}};">
+  <panon-table id='panon-table' class="{{panOn ? 'panon-table-up' : ''}}" style="border:1vw solid {{cursorBg}};">
     <div id='vs-icon' class="vs-icon panon-table">
       <img src="/assets/vs.png"/>
     </div>
-    <button id='lvl-up' class="player-button level-up">+1</button>
-    <button id='lvl-down' class="player-button level-down">-1</button>
-    <button id='gear-up' class="player-button gear-up">+1</button>
-    <button id='gear-down' class="player-button gear-down">-1</button>
+    <button style="background:{{cursorBg}}" id='lvl-up' class="player-button level-up">+1</button>
+    <button style="background:{{cursorBg}}" id='lvl-down' class="player-button level-down">-1</button>
+    <button style="background:{{cursorBg}}" id='gear-up' class="player-button gear-up">+1</button>
+    <button style="background:{{cursorBg}}" id='gear-down' class="player-button gear-down">-1</button>
 
     <div id='trash-zone' class="trash-zone">
       <img src="/assets/trashcan.png"/>
