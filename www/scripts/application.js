@@ -36,7 +36,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     }
   };
 
-  var combatFlick = function(player){
+  var combatMove = function(player){
     if (!$scope.inPlayer) {
       if (!$scope.inCombat) {
         $scope.combatants = [];
@@ -55,21 +55,6 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     $scope.combatants.splice($scope.combatants.indexOf(combatant), 1);
   }
 
-  // Players directions
-  var direction = {
-    up: "combatFlick(player)",
-    down: "",
-    right: "",
-    left: ""
-  };
-
-  var facing = {
-    north: [direction.up, direction.right, direction.down, direction.left],
-    east: [direction.left, direction.up, direction.right, direction.down],
-    south: [direction.down, direction.left, direction.up, direction.right],
-    west: [direction.right, direction.down, direction.left, direction.up]
-  }
-
   var colors = [
     ['#0087CA', '#006ca6'],
     ['#86328C', '#642568'],
@@ -81,23 +66,24 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
 
   var appWidth      = window.innerWidth;
   var appHeight     = window.innerHeight;
+  var meepoShift    = appWidth * 0.15;
 
-  var xLeft         = appWidth * 0.15 - appWidth * 0.15;
-  var xMiddle       = appWidth * 0.50 - appWidth  * 0.15;
-  var xRight        = appWidth * 0.85 - appWidth * 0.15;
+  var xLeft         = appWidth * 0.15 - meepoShift;
+  var xMiddle       = appWidth * 0.50 - meepoShift;
+  var xRight        = appWidth * 0.85 - meepoShift;
 
   var yTop          = appHeight * 0.86 - appWidth * 0.135;
-  var yTopMiddle    = appHeight * 0.63 - appWidth  * 0.135;
-  var yBottomMiddle = appHeight * 0.37 - appWidth  * 0.135;
+  var yTopMiddle    = appHeight * 0.63 - appWidth * 0.135;
+  var yBottomMiddle = appHeight * 0.37 - appWidth * 0.135;
   var yBottom       = appHeight * 0.14 - appWidth * 0.135;
 
   $scope.players = [
-    {lvl: 1, gear: 0, active: true, facing: facing.north, color: colors[0], position: [xMiddle, yBottom,         0]},
-    {lvl: 1, gear: 0, active: true, facing: facing.east,  color: colors[1], position: [xLeft,   yBottomMiddle,  90]},
-    {lvl: 1, gear: 0, active: true, facing: facing.east,  color: colors[2], position: [xLeft,   yTopMiddle,     90]},
-    {lvl: 1, gear: 0, active: true, facing: facing.south, color: colors[3], position: [xMiddle, yTop,          180]},
-    {lvl: 1, gear: 0, active: true, facing: facing.west,  color: colors[4], position: [xRight,  yTopMiddle,    270]},
-    {lvl: 1, gear: 0, active: true, facing: facing.west,  color: colors[5], position: [xRight,  yBottomMiddle, 270]}
+    {lvl: 1, gear: 0, active: true, color: colors[0], position: [xMiddle, yBottom,         0]},
+    {lvl: 1, gear: 0, active: true, color: colors[1], position: [xLeft,   yBottomMiddle,  90]},
+    {lvl: 1, gear: 0, active: true, color: colors[2], position: [xLeft,   yTopMiddle,     90]},
+    {lvl: 1, gear: 0, active: true, color: colors[3], position: [xMiddle, yTop,          180]},
+    {lvl: 1, gear: 0, active: true, color: colors[4], position: [xRight,  yTopMiddle,    270]},
+    {lvl: 1, gear: 0, active: true, color: colors[5], position: [xRight,  yBottomMiddle, 270]}
   ];
 
   $scope.combatants = [];
@@ -106,18 +92,37 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var vsCircle = document.getElementById('vs-icon');
   var vsCirclePos = [vsCircle.offsetLeft, vsCircle.offsetLeft + vsCircle.offsetWidth, vsCircle.offsetTop, vsCircle.offsetTop + vsCircle.offsetHeight];
 
+  var lvlUp = document.getElementById('lvl-up');
+  var lvlUpPos = [lvlUp.offsetLeft, lvlUp.offsetLeft + lvlUp.offsetWidth, lvlUp.offsetTop, lvlUp.offsetTop + lvlUp.offsetHeight];
+
+  var lvlDown = document.getElementById('lvl-down');
+  var lvlDownPos = [lvlDown.offsetLeft, lvlDown.offsetLeft + lvlDown.offsetWidth, lvlDown.offsetTop, lvlDown.offsetTop + lvlDown.offsetHeight];
+
+  var gearUp = document.getElementById('gear-up');
+  var gearUpPos = [gearUp.offsetLeft, gearUp.offsetLeft + gearUp.offsetWidth, gearUp.offsetTop, gearUp.offsetTop + gearUp.offsetHeight];
+
+  var gearDown = document.getElementById('gear-down');
+  var gearDownPos = [gearDown.offsetLeft, gearDown.offsetLeft + gearDown.offsetWidth, gearDown.offsetTop, gearDown.offsetTop + gearDown.offsetHeight];
+
   $scope.panOn = false;
 
   $scope.positionCheck = function(player) {
     $scope.panOn = false;
     if (vsCirclePos[0] < $scope.mx && $scope.mx < vsCirclePos[1] && vsCirclePos[2] < $scope.my && $scope.my < vsCirclePos[3]) {
-      combatFlick(player);
-
-      // To avoid cursor jitter
-      $scope.mx = -100;
-      $scope.my = -100;
-
+      combatMove(player);
+    } else if (lvlUpPos[0] < $scope.mx && $scope.mx < lvlUpPos[1] && lvlUpPos[2] < $scope.my && $scope.my < lvlUpPos[3]) {
+      player.lvl++;
+    } else if (lvlDownPos[0] < $scope.mx && $scope.mx < lvlDownPos[1] && lvlDownPos[2] < $scope.my && $scope.my < lvlDownPos[3]) {
+      player.lvl--;
+    } else if (gearUpPos[0] < $scope.mx && $scope.mx < gearUpPos[1] && gearUpPos[2] < $scope.my && $scope.my < gearUpPos[3]) {
+      player.gear++;
+    } else if (gearDownPos[0] < $scope.mx && $scope.mx < gearDownPos[1] && gearDownPos[2] < $scope.my && $scope.my < gearDownPos[3]) {
+      player.gear--;
     };
+
+    // To avoid cursor jitter
+    $scope.mx = -100;
+    $scope.my = -100;
   }
 
   $scope.radialOn = function(player) {

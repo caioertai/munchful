@@ -42,23 +42,6 @@ svg
   margin-left: -35vw
   z-index: 20
 
-.vs-icon
-  position: absolute
-  z-index: 30
-  bottom: 50%
-  left: 50%
-  height: 24vw
-  width: 24vw
-  margin-left: -12vw
-  margin-bottom: -12vw
-  border-radius: 50%
-  border: 0 dashed #ccc
-  background: rgba(255,255,255,0)
-
-.panon
-  border: 3px dashed #ccc
-  background: rgba(255,255,255,0.75)
-
 .close-icon
   position: absolute
   top: -30px
@@ -121,10 +104,9 @@ svg
   padding: 0
   border: none
   border-radius: 50%
-  color: #808080
   background-color: #ccc
-  text-align: center
   color: #fff
+  text-align: center
   font-size: 5vw
   margin: 1vw 0
 
@@ -189,3 +171,73 @@ svg
   left: 0
   border-radius: 50%
   z-index: 998
+
+
+overlay
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 34
+  background: rgba(255,255,255,0.4)
+
+$panon-table-size: 64vw
+panon-table
+  visibility: hidden
+
+.panon-table-up
+  visibility: visible
+  position: absolute
+  height: $panon-table-size
+  width: $panon-table-size
+  top: 50%
+  left: 50%
+  margin-top: -$panon-table-size/2
+  margin-left: -$panon-table-size/2
+  background: #eee
+  border-radius: 50%
+  z-index: 35
+
+$player-button-size: 24vw
+.player-button
+  margin-left: -$player-button-size/2
+  margin-bottom: -$player-button-size/2
+  height: $player-button-size
+  width: $player-button-size
+  padding: 0
+  border: none
+  border-radius: 50%
+  background-color: #ccc
+  color: #fff
+  font-size: 1.375rem
+  position: absolute
+  z-index: 30
+  bottom: 50%
+  left: 50%
+
+.level-up
+  margin-bottom: ($panon-table-size/2 - $player-button-size/2)
+
+.level-down
+  margin-bottom: -($panon-table-size/2 + $player-button-size/2)
+
+.gear-up
+  margin-left: ($panon-table-size/2 - $player-button-size/2)
+
+.gear-down
+  margin-left: -($panon-table-size/2 + $player-button-size/2)
+
+.vs-icon
+  position: absolute
+  bottom: 50%
+  left: 50%
+  height: 24vw
+  width: 24vw
+  margin-left: -12vw
+  margin-bottom: -12vw
+  border-radius: 50%
+  // border: 0 dashed #ccc
+  // background: rgba(255,255,255,0)
+  border: 3px dashed #ccc
+  background: rgba(255,255,255,0.95)

@@ -43,9 +43,24 @@
     </div>
   </div>
 
+  <overlay ng-show="panOn"></overlay>
+  <panon-table id='panon-table' class="{{panOn ? 'panon-table-up' : ''}}" style="background:{{cursorBg}};">
+    <div id='vs-icon' class="vs-icon" ng-click="inCombat = true">
+      <img src="/assets/vs.png"/>
+    </div>
+    <button id='lvl-up' class="player-button level-up">+1</button>
+    <button id='lvl-down' class="player-button level-down">-1</button>
+    <button id='gear-up' class="player-button gear-up">+1</button>
+    <button id='gear-down' class="player-button gear-down">-1</button>
+  </panon-table>
+
+  <!-- <div>
   <div id='vs-icon' class="vs-icon {{panOn ? 'panon' : ''}}" ng-click="inCombat = true" ng-hide="inCombat || inPlayer">
     <img src="/assets/vs.png"/>
   </div>
+  <button id='lvl-up' class="player-button level-up">+1</button>
+  <button id='lvl-down' class="player-button level-down">-1</button>
+  </div> -->
 
   <!-- Combat/Sheet Table -->
   <div class="{{inCombat || inPlayer ? 'open-table' : ''}} table">
