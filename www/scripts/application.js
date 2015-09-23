@@ -126,6 +126,13 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     return positionArr[0] < $scope.mx && $scope.mx < positionArr[1] && positionArr[2] < $scope.my && $scope.my < positionArr[3];
   }
 
+  function playerActivation(index, object) {
+    $scope.players[index].active = true;
+    $scope.players[index].color[2] = false;
+    $scope.players[index].color = object;
+    object[2] = true;
+  }
+
   $scope.positionCheck = function(currentObject) {
     if ($scope.panMenu) {
       $scope.panMenu = false;
@@ -147,35 +154,17 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       };
     } else if ($scope.panBench) {
       if (areaCalc(player0Pos)) {
-        $scope.players[0].active = true;
-        $scope.players[0].color[2] = false;
-        $scope.players[0].color = currentObject;
-        currentObject[2] = true;
+        playerActivation(0, currentObject);
       } else if (areaCalc(player1Pos)) {
-        $scope.players[1].active = true;
-        $scope.players[1].color[2] = false;
-        $scope.players[1].color = currentObject;
-        currentObject[2] = true;
+        playerActivation(1, currentObject);
       } else if (areaCalc(player2Pos)) {
-        $scope.players[2].active = true;
-        $scope.players[2].color[2] = false;
-        $scope.players[2].color = currentObject;
-        currentObject[2] = true;
+        playerActivation(2, currentObject);
       } else if (areaCalc(player3Pos)) {
-        $scope.players[3].active = true;
-        $scope.players[3].color[2] = false;
-        $scope.players[3].color = currentObject;
-        currentObject[2] = true;
+        playerActivation(3, currentObject);
       } else if (areaCalc(player4Pos)) {
-        $scope.players[4].active = true;
-        $scope.players[4].color[2] = false;
-        $scope.players[4].color = currentObject;
-        currentObject[2] = true;
+        playerActivation(4, currentObject);
       } else if (areaCalc(player5Pos)) {
-        $scope.players[5].active = true;
-        $scope.players[5].color[2] = false;
-        $scope.players[5].color = currentObject;
-        currentObject[2] = true;
+        playerActivation(5, currentObject);
       };
       $scope.panBench = false;
     }
