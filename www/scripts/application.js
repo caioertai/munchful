@@ -181,13 +181,13 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     }
 
     // To avoid cursor jitter
-    $scope.mx = -100;
-    $scope.my = -100;
+    touchListenerActive(false);
   }
 
   $scope.radialOn = function(target, panMenu) {
     $scope.cursorBg = target.color ? target.color[0] : target[0];
     $scope.panMenu = panMenu;
+    touchListenerActive(true);
     if (!target.color)
       $scope.panBench = true;
   }
@@ -196,8 +196,19 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.mx = -100;
   $scope.my = -100;
   $scope.cursorBg = '#a00'
-  window.addEventListener('touchmove', function(event){
+
+  var touchListener = function(event){
     $scope.mx = event.touches[0].pageX;
     $scope.my = event.touches[0].pageY;
-  }, false);
+  }
+
+  var touchListenerActive = function(active) {
+    if (active) {
+      window.addEventListener('touchmove', touchListener, false);
+    } else {
+      window.removeEventListener('touchmove', touchListener, false);
+      $scope.mx = -100;
+      $scope.my = -100;
+    }
+  }
 });
