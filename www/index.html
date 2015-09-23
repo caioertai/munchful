@@ -25,7 +25,7 @@
   <button id="cursor" class="round-button" style="background:{{cursorBg}};left:{{mx}}px;top:{{my}}px"></button>
 
   <!-- Players containers -->
-  <div ng-repeat='player in players' style="left:{{player.position[0]}}px;top:{{player.position[1]}}px;-webkit-transform:rotate({{player.position[2]}}deg);" class="mp-box" ng-click='playerSheet($index); currentPlayer = $index' hm-panstart="radialOn(player, true)" hm-pan="" hm-panend="positionCheck(player)" ng-show='player.active'>
+  <div ng-repeat='player in players' style="left:{{player.position[0]}}px;top:{{player.position[1]}}px;-webkit-transform:rotate({{player.position[2]}}deg);" class="mp-box" hm-panstart="radialOn(player, true)" hm-pan="" hm-panend="positionCheck(player)" ng-show='player.active'>
     <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
       <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
       <ellipse fill="{{player.color[1]}}" cx="100" cy="56" rx="56" ry="56"></ellipse>
