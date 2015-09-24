@@ -63,8 +63,14 @@ svg
   z-index: 10
   color: #fff
 
-.mp-box-area
+.mp-bench
   z-index: 0
+  border-radius: 50%
+  height: 30vw
+  width: 30vw
+  background: #ddd
+  position: absolute
+  border: 1px dashed #999
 
 .mp-empty
   border: 1px dashed #aaa
@@ -271,14 +277,16 @@ $player-button-size: 24vw
     top: 13vw
     position: relative
 
-menu-button
+bench-menu
   position: absolute
-  z-index: 34
-  top: 0vw
-  left: 1vw
-  font-size: 8vw
-  line-height: 10vw
-  color: #888
+  top: 45vw
+  left: 50%
+  z-index: 20
+  width: 36vw
+  text-align: center
+  margin-left: -18vw
+  padding: 2vw
+  background: #ddd
 
 .bench-meepo
   width: 9vw
@@ -286,3 +294,8 @@ menu-button
   margin-top: 3vw
   margin-right: 0.5vw
   position:relative
+
+.instructions
+  font-size: 10px
+  line-height: 1.2
+  color: #555
