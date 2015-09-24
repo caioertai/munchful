@@ -182,23 +182,28 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   }
 
   var radialOn = function() {
-    $scope.benchMenu = false;
     $scope.panMenu = true;
     $scope.overlayOn = true;
+  }
+
+  $scope.benchToggle = function(option) {
+    $scope.benchMenu = option;
   }
 
   $scope.panningOn = function(target, radial) {
     touchListenerActive(true);
     $scope.cursorBg = target.color ? target.color[0] : target[0];
     $scope.panBench = !radial;
-    if (radial)
+    if (radial) {
+      $scope.benchMenu = false;
       radialOn();
+    }
   }
 
   // Cursor
   $scope.mx = -100;
   $scope.my = -100;
-  $scope.cursorBg = '#a00'
+  $scope.cursorBg = '#cccccc'
 
   var touchListener = function(event){
     $scope.mx = event.touches[0].pageX;
