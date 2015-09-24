@@ -1,5 +1,5 @@
-<bench-icon ng-click="benchMenu = true">
-  {{benchMenu ? '&nbsp;&times;&nbsp;' : '&#9776;'}}
+<bench-icon ng-click="benchMenu = !benchMenu">
+  <img class='round-button' src="/assets/meepos.png" alt="" />
 </bench-icon>
 
 <bench-menu ng-show="benchMenu">
