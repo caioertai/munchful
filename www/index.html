@@ -24,8 +24,9 @@
 <div ng-controller="IndexController">
   <button id="cursor" class="round-button" style="background:{{cursorBg}};left:{{mx}}px;top:{{my}}px"></button>
 
+
   <!-- Players containers -->
-  <div ng-repeat='player in players' style="left:{{player.position[0]}}px;top:{{player.position[1]}}px;-webkit-transform:rotate({{player.position[2]}}deg);" class="mp-box" hm-panstart="radialOn(player, true)" hm-pan="" hm-panend="positionCheck(player)" ng-show='player.active'>
+  <div ng-repeat='player in players' style="left:{{player.position[0]}}px;top:{{player.position[1]}}px;-webkit-transform:rotate({{player.position[2]}}deg);" class="mp-box" hm-panstart="panningOn(player, true)" hm-pan="" hm-panend="positionCheck(player)" ng-show='player.active'>
     <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
       <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
       <ellipse fill="{{player.color[1]}}" cx="100" cy="56" rx="56" ry="56"></ellipse>
@@ -40,24 +41,16 @@
     </table>
   </div>
 
-  <overlay ng-show="panMenu"></overlay>
-  <menu-button>
-    <span ng-click="menuActive = !menuActive">
-      {{menuActive ? '&nbsp;&times;&nbsp;' : '&#9776;'}}
-    </span>
-    <span ng-show="menuActive">
-      <span ng-repeat='color in colors'>
-        <svg ng-if="!color[2]" class="bench-meepo" version="1.1" x="0" y="0" viewBox="0 0 236.3 261.9" hm-panstart="radialOn(color, false)" hm-pan="" hm-panend="positionCheck(color)">
-          <path fill="{{color[0]}}" d="M118.1,89.8c65.2,0,118.1,48.4,118.1,108.1c0,28.9-52.9,64.1-118.1,64.1S0,224.4,0,197.9C0,138.2,52.9,89.8,118.1,89.8z"></path>
-          <circle fill="{{color[0]}}" cx="118.1" cy="66.2" r="66.2"></circle>
-        </svg>
-      </span>
-    </span>
-  </menu-button>
 
-  <!-- <div class="vs-icon" ng-click="inCombat = true">
-    <img src="/assets/vs.png"/>
-  </div> -->
+  <!-- Overlay -->
+  <overlay ng-show="overlayOn"></overlay>
+
+
+  <!-- Bench menu -->
+  <menu-button ng-include="'bench-menu.html'"></menu-button>
+
+
+  <!-- Pan on table -->
   <panon-table id='panon-table' class="{{panMenu ? 'panon-table-up' : ''}}" style="border:1vw solid {{cursorBg}};">
     <div id='vs-icon' class="vs-icon panon-table">
       <img src="/assets/vs.png"/>
@@ -74,12 +67,11 @@
     <button style="background:{{cursorBg}}" id='gear-down' class="player-button gear-down">
       <img src="/assets/geardown.png"/>
     </button>
-
     <div id='trash-zone' class="trash-zone">
       <img src="/assets/trashcan.png"/>
     </div>
-    <!-- <button id='gear-down' class="player-button gear-down">-1</button> -->
   </panon-table>
+
 
   <!-- Combat/Sheet Table -->
   <div class="{{inCombat || inPlayer ? 'open-table' : ''}} table">
@@ -158,8 +150,6 @@
           </td>
         </tr>
       </table>
-      <div class="sheet-meepo">
-      </div>
     </div>
   </div>
 

@@ -13,7 +13,11 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.currentPlayer = 0;
   $scope.playerBonus = 0;
   $scope.monsterPower = 5;
-  $scope.menuActive = true;
+
+  $scope.benchMenu = true;
+  $scope.panBench = false;
+  $scope.panMenu = false;
+  $scope.overlayOn = false;
 
   $scope.monsterTier = function() {
     if ($scope.monsterPower < 8)  {
@@ -118,15 +122,11 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var trashZone = document.getElementById('trash-zone');
   var trashZonePos = [trashZone.offsetLeft, trashZone.offsetLeft + trashZone.offsetWidth, trashZone.offsetTop, trashZone.offsetTop + trashZone.offsetHeight];
 
-
-  $scope.panMenu = false;
-  $scope.panBench = false;
-
-  function areaCalc(positionArr) {
+  var areaCalc = function(positionArr) {
     return positionArr[0] < $scope.mx && $scope.mx < positionArr[1] && positionArr[2] < $scope.my && $scope.my < positionArr[3];
   }
 
-  function playerActivation(index, object) {
+  var playerActivation = function(index, object) {
     $scope.players[index].active = true;
     $scope.players[index].color[2] = false;
     $scope.players[index].color = object;
@@ -136,6 +136,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.positionCheck = function(currentObject) {
     if ($scope.panMenu) {
       $scope.panMenu = false;
+      $scope.overlayOn = false;
       if (areaCalc(vsCirclePos)) {
         combatMove(currentObject);
       } else if (areaCalc(lvlUpPos)) {
@@ -173,13 +174,33 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     touchListenerActive(false);
   }
 
-  $scope.radialOn = function(target, panMenu) {
-    $scope.cursorBg = target.color ? target.color[0] : target[0];
-    $scope.panMenu = panMenu;
-    touchListenerActive(true);
-    if (!target.color)
-      $scope.panBench = true;
+  var radialOn = function() {
+    $scope.panMenu = true;
+    $scope.overlayOn = true;
   }
+
+  $scope.panningOn = function(target, radial) {
+    touchListenerActive(true);
+    $scope.cursorBg = target.color ? target.color[0] : target[0];
+
+    if (radial) {
+      radialOn();
+    } else {
+      $scope.panBench = true;
+    }
+  }
+
+  // $scope.radialOn = function(target, menuToggle) {
+  //   $scope.cursorBg = target.color ? target.color[0] : target[0];
+  //
+  //   var panMenu = menuToggle || false;
+  //   $scope.panMenu = panMenu;
+  //   $scope.overlayOn = panMenu;
+  //
+  //   touchListenerActive(true);
+  //   if (!target.color)
+  //     $scope.panBench = true;
+  // }
 
   // Cursor
   $scope.mx = -100;
