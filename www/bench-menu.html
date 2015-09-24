@@ -7,7 +7,7 @@
     Drag a meepo to a seat to add a player, or over another meepo to change its color.
   </div>
   <span ng-repeat='color in colors'>
-    <svg ng-if="!color[2]" class="bench-meepo" version="1.1" x="0" y="0" viewBox="0 0 236.3 261.9" hm-panstart="panningOn(color, false)" hm-pan="" hm-panend="positionCheck(color)">
+    <svg ng-if="!color[2]" class="bench-meepo" version="1.1" x="0" y="0" viewBox="0 0 236.3 261.9" hm-panstart="panningOn(color, false)" hm-panmove="" hm-panend="positionCheck(color)">
       <path fill="{{color[0]}}" d="M118.1,89.8c65.2,0,118.1,48.4,118.1,108.1c0,28.9-52.9,64.1-118.1,64.1S0,224.4,0,197.9C0,138.2,52.9,89.8,118.1,89.8z"></path>
       <circle fill="{{color[0]}}" cx="118.1" cy="66.2" r="66.2"></circle>
     </svg>
