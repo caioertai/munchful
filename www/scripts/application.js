@@ -22,6 +22,15 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.overlayOn = false;
 
 
+  $scope.helpStatus = {
+    benchButton: true,
+    dragToSeat: true,
+    draggedToSeat: false,
+    radialMenu: false,
+    tutorialOn: true
+  }
+
+
   $scope.monsterFunction = function(bonus) {
     if (bonus)
       $scope.monsterPower = $scope.monsterPower + bonus
@@ -138,6 +147,12 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     $scope.players[index].color[2] = false;
     $scope.players[index].color = object;
     object[2] = true;
+
+    if ($scope.helpStatus.tutorialOn) {
+      $scope.helpStatus.dragToSeat = false;
+      $scope.helpStatus.draggedToSeat = true;
+      $scope.helpStatus.radialMenu = true;
+    }
   }
 
   $scope.positionCheck = function(currentObject) {
@@ -184,10 +199,16 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var radialOn = function() {
     $scope.panMenu = true;
     $scope.overlayOn = true;
+
+    if($scope.helpStatus.tutorialOn && $scope.helpStatus.draggedToSeat) {
+      $scope.helpStatus.radialMenu = false;
+      $scope.helpStatus.tutorialOn = false;
+    }
   }
 
   $scope.benchToggle = function(option) {
     $scope.benchMenu = option;
+    $scope.helpStatus.benchButton = false;
   }
 
   $scope.panningOn = function(target, radial) {
