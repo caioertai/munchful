@@ -73,19 +73,19 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var yBottomMiddle = appHeight * 0.63 - appWidth * 0.135;
   var yBottom       = appHeight * 0.86 - appWidth * 0.135;
 
-
   $scope.colors = [
-    ['#0087CA', '#006ca6', true],
-    ['#86328C', '#642568', false],
-    ['#91be4a', '#75993c', false],
-    ['#c1272d', '#991132', false],
-    ['#f763a2', '#d9578e', false],
-    ['#f7931e', '#cf7b19', false],
-    ['#999999', '#888888', false],
+    ['#0087CA', tinycolor("#0087CA").darken(7).toString(), false],
+    ['#86328C', tinycolor("#86328C").darken(7).toString(), false],
+    ['#91be4a', tinycolor("#91be4a").darken(7).toString(), false],
+    ['#c1272d', tinycolor("#c1272d").darken(7).toString(), false],
+    ['#f763a2', tinycolor("#f763a2").darken(7).toString(), false],
+    ['#f7931e', tinycolor("#f7931e").darken(7).toString(), false],
+    ['#999999', tinycolor("#999999").darken(7).toString(), false],
+    ['#222222', tinycolor("#222222").darken(7).toString(), false]
   ];
 
   $scope.players = [
-    {lvl: 1, gear: 0, active: true , color: $scope.colors[0], position: [xMiddle, yBottom,         0]},
+    {lvl: 1, gear: 0, active: false, color: false, position: [xMiddle, yBottom,         0]},
     {lvl: 1, gear: 0, active: false, color: false, position: [xLeft,   yBottomMiddle,  90]},
     {lvl: 1, gear: 0, active: false, color: false, position: [xLeft,   yTopMiddle,     90]},
     {lvl: 1, gear: 0, active: false, color: false, position: [xMiddle, yTop,          180]},
