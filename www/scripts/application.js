@@ -10,7 +10,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   // Table functions
   $scope.inCombat = false;
   $scope.inPlayer = false;
-  $scope.currentPlayer = 0;
+  $scope.currentPlayer = false;
   $scope.playerBonus = 0;
 
   $scope.monsterPower = 5;
@@ -48,14 +48,14 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     }
   };
 
-  $scope.playerSheet = function(position){
-    if(!$scope.inCombat){
-      $scope.inPlayer = true;
-      $scope.currentPlayer = position;
-    }
+  $scope.selectPlayer = function(player){
+    $scope.currentPlayer = player;
+    $scope.cursorBg = player.color[0];
+    openRadial();
   };
 
-  var combatMove = function(player){
+  $scope.combatMove = function(player){
+    $scope.closeRadial();
     if (!$scope.inPlayer) {
       if (!$scope.inCombat) {
         $scope.combatants = [];
@@ -155,12 +155,28 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     }
   }
 
+  $scope.playerUpdate = function(player, bonus, target){
+    if (target == 'gear') {
+      player.gear = player.gear + bonus;
+    } else {
+      player.lvl = player.lvl + bonus;
+    }
+  }
+
+  $scope.benchPlayer = function(player) {
+    player.active = false;
+    player.lvl = 1;
+    player.gear = 0;
+    player.color[2] = false;
+    $scope.closeRadial();
+  }
+
   $scope.positionCheck = function(currentObject) {
     if ($scope.panMenu) {
-      $scope.panMenu = false;
-      $scope.overlayOn = false;
-      if (areaCalc(vsCirclePos)) {
-        combatMove(currentObject);
+      if (areaCalc(trashZonePos)) {
+        $scope.benchPlayer(currentObject);
+      } else if (areaCalc(vsCirclePos)) {
+        $scope.combatMove(currentObject);
       } else if (areaCalc(lvlUpPos)) {
         currentObject.lvl++;
       } else if (areaCalc(lvlDownPos)) {
@@ -169,11 +185,6 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
         currentObject.gear++;
       } else if (areaCalc(gearDownPos)) {
         currentObject.gear--;
-      } else if (areaCalc(trashZonePos)) {
-        currentObject.active = false;
-        currentObject.lvl = 1;
-        currentObject.gear = 0;
-        currentObject.color[2] = false;
       };
     } else if ($scope.panBench) {
       if (areaCalc(player0Pos)) {
@@ -192,11 +203,11 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       $scope.panBench = false;
     }
 
-    // To avoid cursor jitter
     touchListenerActive(false);
+    $scope.closeRadial();
   }
 
-  var radialOn = function() {
+  var openRadial = function() {
     $scope.panMenu = true;
     $scope.overlayOn = true;
 
@@ -204,6 +215,11 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       $scope.helpStatus.radialMenu = false;
       $scope.helpStatus.tutorialOn = false;
     }
+  }
+
+  $scope.closeRadial = function() {
+    $scope.panMenu = false;
+    $scope.overlayOn = false;
   }
 
   $scope.benchToggle = function(option) {
@@ -217,7 +233,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     $scope.panBench = !radial;
     if (radial) {
       $scope.benchMenu = false;
-      radialOn();
+      openRadial();
     }
   }
 

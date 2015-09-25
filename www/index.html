@@ -27,7 +27,7 @@
 
 
   <!-- Players containers -->
-  <div ng-repeat='player in players' style="left:{{player.position[0]}}px;top:{{player.position[1]}}px;-webkit-transform:rotate({{player.position[2]}}deg);" class="mp-box" hm-panstart="panningOn(player, true)" hm-panmove="" hm-panend="positionCheck(player)" ng-show='player.active'>
+  <div ng-repeat='player in players' style="left:{{player.position[0]}}px;top:{{player.position[1]}}px;-webkit-transform:rotate({{player.position[2]}}deg);" class="mp-box" hm-panstart="panningOn(player, true)" hm-panmove="" hm-panend="positionCheck(player)" ng-click="selectPlayer(player)" ng-show='player.active'>
     <svg version="1.1" x="0" y="0" viewBox="0 0 200 170">
       <ellipse fill="{{player.color[0]}}" cx="100" cy="90" rx="100" ry="80"></ellipse>
       <ellipse fill="{{player.color[1]}}" cx="100" cy="56" rx="56" ry="56"></ellipse>
@@ -44,7 +44,7 @@
 
 
   <!-- Overlay -->
-  <overlay ng-show="overlayOn"></overlay>
+  <overlay ng-show="overlayOn" ng-click="closeRadial()"></overlay>
 
 
   <!-- Bench menu -->
@@ -54,27 +54,27 @@
   </benches>
 
 
-  <!-- Pan on table -->
-  <panon-table id='panon-table' class="{{panMenu ? 'panon-table-up' : ''}}" style="border:1vw solid {{cursorBg}};">
-    <div id='vs-icon' class="vs-icon panon-table">
-      <img src="/assets/vs.png"/>
+  <!-- Pan on menu -->
+  <panon-menu id='panon-menu' class="{{panMenu ? 'panon-menu-up' : ''}}" style="border:1vw solid {{cursorBg}};">
+    <div style="background:{{cursorBg}}" id='vs-icon' class="vs-icon panon-menu" ng-click="combatMove(currentPlayer)">
+      <img src="/assets/vswhite.png"/>
     </div>
-    <button style="background:{{cursorBg}}" id='lvl-up' class="player-button level-up">
+    <button style="background:{{cursorBg}}" id='lvl-up' class="player-button level-up" ng-click="playerUpdate(currentPlayer, +1, 'lvl')">
       <img src="/assets/lvlup.png"/>
     </button>
-    <button style="background:{{cursorBg}}" id='lvl-down' class="player-button level-down">
+    <button style="background:{{cursorBg}}" id='lvl-down' class="player-button level-down" ng-click="playerUpdate(currentPlayer, -1, 'lvl')">
       <img src="/assets/lvldown.png"/>
     </button>
-    <button style="background:{{cursorBg}}" id='gear-up' class="player-button gear-up">
+    <button style="background:{{cursorBg}}" id='gear-up' class="player-button gear-up" ng-click="playerUpdate(currentPlayer, +1, 'gear')">
       <img src="/assets/gearup.png"/>
     </button>
-    <button style="background:{{cursorBg}}" id='gear-down' class="player-button gear-down">
+    <button style="background:{{cursorBg}}" id='gear-down' class="player-button gear-down" ng-click="playerUpdate(currentPlayer, -1, 'gear')">
       <img src="/assets/geardown.png"/>
     </button>
-    <div id='trash-zone' class="trash-zone">
+    <div style="background:{{cursorBg}}" id='trash-zone' class="trash-zone" ng-click="benchPlayer(currentPlayer)">
       <img src="/assets/trashcan.png"/>
     </div>
-  </panon-table>
+  </panon-menu>
 
 
   <!-- Combat/Sheet Table -->

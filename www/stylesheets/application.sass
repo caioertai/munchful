@@ -17,14 +17,6 @@ td
 svg
   width: 100%
 
-// .player-container
-//   position: absolute
-//   left: 0
-//   right: 0
-//   z-index: 5
-//   width: 100%
-//   height: 100%
-
 .table
   position: absolute
   background-color: #E6E6E6
@@ -190,19 +182,19 @@ overlay
   z-index: 34
   background: rgba(0,0,0,0.5)
 
-$panon-table-size: 64vw
-panon-table
+$panon-menu-size: 64vw
+panon-menu
   visibility: hidden
 
-.panon-table-up
+.panon-menu-up
   visibility: visible
   position: absolute
-  height: $panon-table-size
-  width: $panon-table-size
+  height: $panon-menu-size
+  width: $panon-menu-size
   top: 50%
   left: 50%
-  margin-top: -$panon-table-size/2
-  margin-left: -$panon-table-size/2
+  margin-top: -$panon-menu-size/2
+  margin-left: -$panon-menu-size/2
   background: rgba(255,255,255,0.75)
   border-radius: 50%
   z-index: 35
@@ -229,34 +221,35 @@ $player-button-size: 24vw
     max-width: 60%
 
 .level-up
-  margin-bottom: ($panon-table-size/2 - $player-button-size/2)
+  margin-bottom: ($panon-menu-size/2 - $player-button-size/2)
 
 .level-down
-  margin-bottom: -($panon-table-size/2 + $player-button-size/2)
+  margin-bottom: -($panon-menu-size/2 + $player-button-size/2)
 
 .gear-up
-  margin-left: ($panon-table-size/2 - $player-button-size/2)
+  margin-left: ($panon-menu-size/2 - $player-button-size/2)
 
 .gear-down
-  margin-left: -($panon-table-size/2 + $player-button-size/2)
+  margin-left: -($panon-menu-size/2 + $player-button-size/2)
 
+$vs-iconSize: 24vw
 .vs-icon
   position: absolute
   bottom: 50%
   left: 50%
-  height: 24vw
-  width: 24vw
-  margin-left: -12vw
-  margin-bottom: -12vw
+  padding: 4vw
+  height: $vs-iconSize
+  width: $vs-iconSize
+  margin-left: -$vs-iconSize/2
+  margin-bottom: -$vs-iconSize/2
   border-radius: 50%
   z-index: 20
 
-.panon-table
+.panon-menu
   // border: 3px dashed #ccc
   background: rgba(255,255,255,0.95)
 
 .trash-zone
-  background: #ddd
   width: 32vw
   height: 32vw
   border-radius: 50%
