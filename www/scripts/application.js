@@ -12,20 +12,39 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.inPlayer = false;
   $scope.currentPlayer = 0;
   $scope.playerBonus = 0;
-  $scope.monsterPower = 5;
-  $scope.menuActive = true;
 
-  $scope.monsterTier = function() {
-    if ($scope.monsterPower < 8)  {
-      return 1;
-    } else if ($scope.monsterPower < 16) {
-      return 2;
-    } else if ($scope.monsterPower < 24) {
-      return 3;
-    } else if ($scope.monsterPower < 32) {
-      return 4;
+  $scope.monsterPower = 5;
+  $scope.monsterTier = 1;
+
+  $scope.benchMenu = false;
+  $scope.panBench = false;
+  $scope.panMenu = false;
+  $scope.overlayOn = false;
+
+
+  $scope.helpStatus = {
+    benchButton: true,
+    dragToSeat: true,
+    draggedToSeat: false,
+    radialMenu: false,
+    tutorialOn: true
+  }
+
+
+  $scope.monsterFunction = function(bonus) {
+    if (bonus)
+      $scope.monsterPower = $scope.monsterPower + bonus
+    var power = $scope.monsterPower;
+    if (power < 8)  {
+      $scope.monsterTier = 1;
+    } else if (power < 16) {
+      $scope.monsterTier = 2;
+    } else if (power < 24) {
+      $scope.monsterTier = 3;
+    } else if (power < 32) {
+      $scope.monsterTier = 4;
     } else {
-      return 5;
+      $scope.monsterTier = 5;
     }
   };
 
@@ -42,6 +61,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
         $scope.combatants = [];
         $scope.playerBonus = 0;
         $scope.monsterPower = 5;
+        $scope.monsterTier = 1;
         $scope.combatants.push(player);
         $scope.inCombat = true;
       } else if ($scope.combatants.indexOf(player) < 0) {
@@ -69,19 +89,19 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var yBottomMiddle = appHeight * 0.63 - appWidth * 0.135;
   var yBottom       = appHeight * 0.86 - appWidth * 0.135;
 
-
   $scope.colors = [
-    ['#0087CA', '#006ca6', true],
-    ['#86328C', '#642568', false],
-    ['#91be4a', '#75993c', false],
-    ['#c1272d', '#991132', false],
-    ['#f763a2', '#d9578e', false],
-    ['#f7931e', '#cf7b19', false],
-    ['#999999', '#888888', false],
+    ['#0087CA', tinycolor("#0087CA").darken(7).toString(), false],
+    ['#86328C', tinycolor("#86328C").darken(7).toString(), false],
+    ['#91be4a', tinycolor("#91be4a").darken(7).toString(), false],
+    ['#c1272d', tinycolor("#c1272d").darken(7).toString(), false],
+    ['#f763a2', tinycolor("#f763a2").darken(7).toString(), false],
+    ['#f7931e', tinycolor("#f7931e").darken(7).toString(), false],
+    ['#999999', tinycolor("#999999").darken(7).toString(), false],
+    ['#222222', tinycolor("#222222").darken(7).toString(), false]
   ];
 
   $scope.players = [
-    {lvl: 1, gear: 0, active: true , color: $scope.colors[0], position: [xMiddle, yBottom,         0]},
+    {lvl: 1, gear: 0, active: false, color: false, position: [xMiddle, yBottom,         0]},
     {lvl: 1, gear: 0, active: false, color: false, position: [xLeft,   yBottomMiddle,  90]},
     {lvl: 1, gear: 0, active: false, color: false, position: [xLeft,   yTopMiddle,     90]},
     {lvl: 1, gear: 0, active: false, color: false, position: [xMiddle, yTop,          180]},
@@ -118,24 +138,27 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   var trashZone = document.getElementById('trash-zone');
   var trashZonePos = [trashZone.offsetLeft, trashZone.offsetLeft + trashZone.offsetWidth, trashZone.offsetTop, trashZone.offsetTop + trashZone.offsetHeight];
 
-
-  $scope.panMenu = false;
-  $scope.panBench = false;
-
-  function areaCalc(positionArr) {
+  var areaCalc = function(positionArr) {
     return positionArr[0] < $scope.mx && $scope.mx < positionArr[1] && positionArr[2] < $scope.my && $scope.my < positionArr[3];
   }
 
-  function playerActivation(index, object) {
+  var playerActivation = function(index, object) {
     $scope.players[index].active = true;
     $scope.players[index].color[2] = false;
     $scope.players[index].color = object;
     object[2] = true;
+
+    if ($scope.helpStatus.tutorialOn) {
+      $scope.helpStatus.dragToSeat = false;
+      $scope.helpStatus.draggedToSeat = true;
+      $scope.helpStatus.radialMenu = true;
+    }
   }
 
   $scope.positionCheck = function(currentObject) {
     if ($scope.panMenu) {
       $scope.panMenu = false;
+      $scope.overlayOn = false;
       if (areaCalc(vsCirclePos)) {
         combatMove(currentObject);
       } else if (areaCalc(lvlUpPos)) {
@@ -173,18 +196,35 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     touchListenerActive(false);
   }
 
-  $scope.radialOn = function(target, panMenu) {
-    $scope.cursorBg = target.color ? target.color[0] : target[0];
-    $scope.panMenu = panMenu;
+  var radialOn = function() {
+    $scope.panMenu = true;
+    $scope.overlayOn = true;
+
+    if($scope.helpStatus.tutorialOn && $scope.helpStatus.draggedToSeat) {
+      $scope.helpStatus.radialMenu = false;
+      $scope.helpStatus.tutorialOn = false;
+    }
+  }
+
+  $scope.benchToggle = function(option) {
+    $scope.benchMenu = option;
+    $scope.helpStatus.benchButton = false;
+  }
+
+  $scope.panningOn = function(target, radial) {
     touchListenerActive(true);
-    if (!target.color)
-      $scope.panBench = true;
+    $scope.cursorBg = target.color ? target.color[0] : target[0];
+    $scope.panBench = !radial;
+    if (radial) {
+      $scope.benchMenu = false;
+      radialOn();
+    }
   }
 
   // Cursor
   $scope.mx = -100;
   $scope.my = -100;
-  $scope.cursorBg = '#a00'
+  $scope.cursorBg = '#cccccc'
 
   var touchListener = function(event){
     $scope.mx = event.touches[0].pageX;

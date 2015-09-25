@@ -63,12 +63,13 @@ svg
   z-index: 10
   color: #fff
 
-.mp-box-area
+.mp-bench
   z-index: 0
-
-.mp-empty
-  border: 1px dashed #aaa
-  background-color: rgba(0,0,0,0.25)
+  border-radius: 50%
+  height: 30vw
+  width: 30vw
+  background: #ddd
+  position: absolute
 
 .mp-counters
   position: absolute
@@ -172,7 +173,7 @@ $combat-icon-size: 8vw
   height: 32vw
   margin-top: -16vw
   margin-left: -16vw
-  border: 2px dashed #a00
+  // border: 2px dashed #a00
   position: absolute
   top: 0
   left: 0
@@ -251,7 +252,7 @@ $player-button-size: 24vw
   z-index: 20
 
 .panon-table
-  border: 3px dashed #ccc
+  // border: 3px dashed #ccc
   background: rgba(255,255,255,0.95)
 
 .trash-zone
@@ -262,8 +263,6 @@ $player-button-size: 24vw
   top: -12vw
   left: -12vw
   position: fixed
-  border: none
-  box-shadow: inset 0 0 16px 0px #777
 
   img
     max-width: 16vw
@@ -271,14 +270,16 @@ $player-button-size: 24vw
     top: 13vw
     position: relative
 
-menu-button
+bench-menu
   position: absolute
-  z-index: 34
-  top: 0vw
-  left: 1vw
-  font-size: 8vw
-  line-height: 10vw
-  color: #888
+  top: 40vw
+  left: 50%
+  z-index: 20
+  width: 36vw
+  text-align: center
+  margin-left: -18vw
+  padding: 2vw
+  background: #ddd
 
 .bench-meepo
   width: 9vw
@@ -286,3 +287,8 @@ menu-button
   margin-top: 3vw
   margin-right: 0.5vw
   position:relative
+
+.instruction
+  font-size: 3.25vw
+  line-height: 1.2
+  color: #555
