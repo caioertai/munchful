@@ -21,6 +21,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.panMenu = false;
   $scope.overlayOn = false;
   $scope.animationName = '';
+  $scope.animationText = '';
 
   $scope.helpStatus = {
     benchButton: true,
@@ -156,11 +157,19 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   };
 
   $scope.playerUpdate = function(player, bonus, target){
+    var bonusText = bonus > 0 ? 'Up' : 'Down';
+    setTimeout(function(){
+      $scope.animationName = '';
+    },10);
+
     if (target == 'gear') {
       player.gear = player.gear + bonus;
+      animateMe('fadeIn' + bonusText, 'GEAR ' + bonusText.toUpperCase());
     } else {
       player.lvl = player.lvl + bonus;
+      animateMe('fadeIn' + bonusText, 'LVL ' + bonusText.toUpperCase());
     }
+    $scope.closeRadial();
   };
 
   $scope.benchPlayer = function(player) {
@@ -170,6 +179,11 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     player.color[2] = false;
     $scope.closeRadial();
   };
+
+  function animateMe(name, text) {
+    $scope.animationName = name;
+    $scope.animationText = text;
+  }
 
   $scope.positionCheck = function(currentObject) {
     $scope.currentPlayer = currentObject;
@@ -183,13 +197,16 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
         $scope.combatMove(currentObject);
       } else if (areaCalc(lvlUpPos)) {
         currentObject.lvl++;
-        $scope.animationName = 'fadeInUp';
+        animateMe('fadeInUp', 'LVL UP');
       } else if (areaCalc(lvlDownPos)) {
         currentObject.lvl--;
+        animateMe('fadeInDown', 'LVL DOWN');
       } else if (areaCalc(gearUpPos)) {
         currentObject.gear++;
+        animateMe('fadeInUp', 'GEAR UP');
       } else if (areaCalc(gearDownPos)) {
         currentObject.gear--;
+        animateMe('fadeInDown', 'GEAR DOWN');
       }
     } else if ($scope.panBench) {
       if (areaCalc(player0Pos)) {

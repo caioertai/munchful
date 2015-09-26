@@ -336,16 +336,16 @@ $animationDistance: 5vw
 @keyframes fadeInDown
   0%
     opacity: 0
-    transform: translateY(-10px)
+    transform: translateY(-$animationDistance*1 - 4vw)
   40%
     opacity: 1
-    transform: translateY(-6px)
+    transform: translateY(-$animationDistance*0.8 - 4vw)
   80%
     opacity: 1
-    transform: translateY(-2px)
+    transform: translateY(-$animationDistance*0.4 - 4vw)
   100%
     opacity: 0
-    transform: translateY(0)
+    transform: translateY(-$animationDistance*0 - 4vw)
 
 .fadeInDown
   animation-name: fadeInDown
