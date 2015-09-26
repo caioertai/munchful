@@ -28,12 +28,12 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     draggedToSeat: false,
     radialMenu: false,
     tutorialOn: true
-  }
+  };
 
 
   $scope.monsterFunction = function(bonus) {
     if (bonus)
-      $scope.monsterPower = $scope.monsterPower + bonus
+      $scope.monsterPower = $scope.monsterPower + bonus;
     var power = $scope.monsterPower;
     if (power < 8)  {
       $scope.monsterTier = 1;
@@ -67,14 +67,14 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       } else if ($scope.combatants.indexOf(player) < 0) {
         $scope.combatants.push(player);
         $scope.inCombat = true;
-      };
-    };
+      }
+    }
   };
 
   $scope.combatRemove = function(combatant){
     $scope.combatants.splice($scope.combatants.indexOf(combatant), 1);
 
-  }
+  };
 
   var appWidth      = window.innerWidth;
   var appHeight     = window.innerHeight;
@@ -140,7 +140,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
 
   var areaCalc = function(positionArr) {
     return positionArr[0] < $scope.mx && $scope.mx < positionArr[1] && positionArr[2] < $scope.my && $scope.my < positionArr[3];
-  }
+  };
 
   var playerActivation = function(index, object) {
     $scope.players[index].active = true;
@@ -153,7 +153,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       $scope.helpStatus.draggedToSeat = true;
       $scope.helpStatus.radialMenu = true;
     }
-  }
+  };
 
   $scope.playerUpdate = function(player, bonus, target){
     if (target == 'gear') {
@@ -161,7 +161,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     } else {
       player.lvl = player.lvl + bonus;
     }
-  }
+  };
 
   $scope.benchPlayer = function(player) {
     player.active = false;
@@ -169,7 +169,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
     player.gear = 0;
     player.color[2] = false;
     $scope.closeRadial();
-  }
+  };
 
   $scope.positionCheck = function(currentObject) {
     if ($scope.panMenu) {
@@ -185,7 +185,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
         currentObject.gear++;
       } else if (areaCalc(gearDownPos)) {
         currentObject.gear--;
-      };
+      }
     } else if ($scope.panBench) {
       if (areaCalc(player0Pos)) {
         playerActivation(0, currentObject);
@@ -199,13 +199,13 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
         playerActivation(4, currentObject);
       } else if (areaCalc(player5Pos)) {
         playerActivation(5, currentObject);
-      };
+      }
       $scope.panBench = false;
     }
 
     touchListenerActive(false);
     $scope.closeRadial();
-  }
+  };
 
   var openRadial = function() {
     $scope.panMenu = true;
@@ -215,17 +215,17 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       $scope.helpStatus.radialMenu = false;
       $scope.helpStatus.tutorialOn = false;
     }
-  }
+  };
 
   $scope.closeRadial = function() {
     $scope.panMenu = false;
     $scope.overlayOn = false;
-  }
+  };
 
   $scope.benchToggle = function(option) {
     $scope.benchMenu = option;
     $scope.helpStatus.benchButton = false;
-  }
+  };
 
   $scope.panningOn = function(target, radial) {
     touchListenerActive(true);
@@ -235,17 +235,17 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       $scope.benchMenu = false;
       openRadial();
     }
-  }
+  };
 
   // Cursor
   $scope.mx = -100;
   $scope.my = -100;
-  $scope.cursorBg = '#cccccc'
+  $scope.cursorBg = '#cccccc';
 
   var touchListener = function(event){
     $scope.mx = event.touches[0].pageX;
     $scope.my = event.touches[0].pageY;
-  }
+  };
 
   var touchListenerActive = function(active) {
     if (active) {
@@ -255,5 +255,5 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       $scope.mx = -100;
       $scope.my = -100;
     }
-  }
+  };
 });
