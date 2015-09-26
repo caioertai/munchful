@@ -285,3 +285,36 @@ bench-menu
   font-size: 3.25vw
   line-height: 1.2
   color: #555
+
+.animated
+  -webkit-animation-duration: 1s
+  animation-duration: 1s
+  -webkit-animation-fill-mode: both
+  animation-fill-mode: both
+  -webkit-animation-timing-function: ease-out
+  animation-timing-function: ease-out
+
+@-webkit-keyframes fadeInUp
+  0%
+    opacity: 0
+    -webkit-transform: translateY(20px)
+  100%
+    opacity: 1
+    -webkit-transform: translateY(0)
+
+.fadeInUp
+  -webkit-animation-name: fadeInUp
+  animation-name:
+
+
+@-webkit-keyframes fadeInDown
+  0%
+    opacity: 0
+    -webkit-transform: translateY(-20px)
+  100%
+    opacity: 1
+    -webkit-transform: translateY(0)
+
+.fadeInDown
+  -webkit-animation-name: fadeInDown
+  animation-name: fadeInDown
