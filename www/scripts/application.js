@@ -20,7 +20,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.panBench = false;
   $scope.panMenu = false;
   $scope.overlayOn = false;
-
+  $scope.animationName = '';
 
   $scope.helpStatus = {
     benchButton: true,
@@ -172,13 +172,18 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   };
 
   $scope.positionCheck = function(currentObject) {
+    $scope.currentPlayer = currentObject;
     if ($scope.panMenu) {
+      setTimeout(function(){
+        $scope.animationName = '';
+      },10);
       if (areaCalc(trashZonePos)) {
         $scope.benchPlayer(currentObject);
       } else if (areaCalc(vsCirclePos)) {
         $scope.combatMove(currentObject);
       } else if (areaCalc(lvlUpPos)) {
         currentObject.lvl++;
+        $scope.animationName = 'fadeInUp';
       } else if (areaCalc(lvlDownPos)) {
         currentObject.lvl--;
       } else if (areaCalc(gearUpPos)) {

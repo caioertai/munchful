@@ -1,7 +1,7 @@
 <bench-icon ng-click="benchToggle(!benchMenu);">
   <img class='round-button' style='vertical-align:middle' src="/assets/meepos.png" alt="" />
   <span class="instruction" ng-show='helpStatus.benchButton'>
-    ← Tap here to start
+    ← Start here
   </span>
 </bench-icon>
 
@@ -12,14 +12,13 @@
       <circle fill="{{color[0]}}" cx="118.1" cy="66.2" r="66.2"></circle>
     </svg>
   </span>
+
   <div class="instruction" ng-show='helpStatus.dragToSeat'>
-    <br>
-    Drag a meepo to a seat to add a player, or over another meepo to change its color.
+    <img src="/assets/drag.png" alt=""/>
+    <!-- Try dragging a meepo to a seat. -->
   </div>
   <div class="instruction" ng-show='helpStatus.radialMenu'>
     <br>
-    Drag seated players to see the options.
-    <br>
-    Enjoy your game. =)
+    Tap a player to see the options (dragging from it is cool too).
   </div>
 </bench-menu>
