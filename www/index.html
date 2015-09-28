@@ -52,11 +52,11 @@
   <benches ng-show='panBench'>
     <div ng-repeat='player in players' style="left:{{player.position[0]}}px;top:{{player.position[1]}}px;" class="mp-bench"></div>
   </benches>
-
-  <div class="animation-box" style="color:{{currentPlayer.color[0]}};left:{{currentPlayer.position[0]}}px;top:{{currentPlayer.position[1]}}px;transform:rotate({{currentPlayer.position[2]}}deg);">
-    <div class="animated {{animationName}}">
+  <div class="animation-box" style="left:{{currentPlayer.position[0]}}px;top:{{currentPlayer.position[1]}}px;transform:rotate({{currentPlayer.position[2]}}deg);">
+    <svg class="animated {{animationName}}" ng-include="animationPartial" version="1.1" viewBox="0 0 79 79"  fill="{{currentPlayer.color[0]}}"></svg>
+    <!-- <div class="animated {{animationName}}">
       {{animationText}}
-    </div>
+    </div> -->
   </div>
 
 
@@ -65,21 +65,26 @@
     <div id='vs-icon' style="background:{{cursorBg}}" class="vs-icon panon-menu" ng-click="combatMove(currentPlayer)">
       <img src="/assets/vswhite.png"/>
     </div>
+
     <button id='lvl-up' style="background:{{cursorBg}}" class="player-button level-up" ng-click="playerUpdate(currentPlayer, +1, 'lvl')">
-      <img src="/assets/lvlup.png"/>
+      <svg ng-include="'/assets/_lvlup.svg'" version="1.1" viewBox="0 0 79 79"  fill="#ffffff"></svg>
     </button>
+
     <button id='lvl-down' style="background:{{cursorBg}}" class="player-button level-down" ng-click="playerUpdate(currentPlayer, -1, 'lvl')">
-      <img src="/assets/lvldown.png"/>
+      <svg ng-include="'/assets/_lvldown.svg'" version="1.1" viewBox="0 0 79 79"  fill="#ffffff"></svg>
     </button>
+
     <button id='gear-up' style="background:{{cursorBg}}" class="player-button gear-up" ng-click="playerUpdate(currentPlayer, +1, 'gear')">
-      <img src="/assets/gearup.png"/>
+      <svg ng-include="'/assets/_gearup.svg'" version="1.1" viewBox="0 0 79 79"  fill="#ffffff"></svg>
     </button>
+
     <button id='gear-down' style="background:{{cursorBg}}" class="player-button gear-down" ng-click="playerUpdate(currentPlayer, -1, 'gear')">
-      <img src="/assets/geardown.png"/>
+      <svg ng-include="'/assets/_geardown.svg'" version="1.1" viewBox="0 0 79 79"  fill="#ffffff"></svg>
     </button>
+
     <div id='trash-zone' style="background:{{cursorBg}}" class="trash-zone" ng-click="benchPlayer(currentPlayer)">
       <img src="/assets/trashcan.png"/>
-    </div class=''>
+    </div>
   </panon-menu>
 
 

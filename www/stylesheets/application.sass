@@ -7,6 +7,9 @@ body
 img
   max-width: 100%
 
+text
+  font-family: Helvetica-Bold, Roboto
+
 table
   width: 100%
   text-align: center
@@ -217,6 +220,7 @@ $player-button-size: 24vw
   z-index: 30
   bottom: 50%
   left: 50%
+  padding: 15px
 
   img
     margin: 20%
@@ -302,9 +306,10 @@ bench-button
 
 .animation-box
   position: absolute
-  z-index: 1
+  z-index: 9
   height: 27vw
   width: 30vw
+  padding: 8vw
 
 .animated
   animation-duration: 0.7s
@@ -316,19 +321,20 @@ bench-button
   text-align: center
 
 $animationDistance: 5vw
+$animationPan: 17vw
 @keyframes fadeInUp
   0%
     opacity: 0
-    transform: translateY(-$animationDistance*0 - 4vw)
+    transform: translateY(-$animationDistance*0 - $animationPan)
   40%
     opacity: 1
-    transform: translateY(-$animationDistance*0.4 - 4vw)
+    transform: translateY(-$animationDistance*0.4 - $animationPan)
   80%
     opacity: 1
-    transform: translateY(-$animationDistance*0.8 - 4vw)
+    transform: translateY(-$animationDistance*0.8 - $animationPan)
   100%
     opacity: 0
-    transform: translateY(-$animationDistance*1 - 4vw)
+    transform: translateY(-$animationDistance*1 - $animationPan)
 
 .fadeInUp
   animation-name: fadeInUp
@@ -336,16 +342,16 @@ $animationDistance: 5vw
 @keyframes fadeInDown
   0%
     opacity: 0
-    transform: translateY(-$animationDistance*1 - 4vw)
+    transform: translateY(-$animationDistance*1 - $animationPan)
   40%
     opacity: 1
-    transform: translateY(-$animationDistance*0.8 - 4vw)
+    transform: translateY(-$animationDistance*0.8 - $animationPan)
   80%
     opacity: 1
-    transform: translateY(-$animationDistance*0.4 - 4vw)
+    transform: translateY(-$animationDistance*0.4 - $animationPan)
   100%
     opacity: 0
-    transform: translateY(-$animationDistance*0 - 4vw)
+    transform: translateY(-$animationDistance*0 - $animationPan)
 
 .fadeInDown
   animation-name: fadeInDown
