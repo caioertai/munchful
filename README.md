@@ -15,4 +15,4 @@ Munchful Table is very early in development and currently has no visual guidelin
 ### TO DO
 - Add visual guidelines for the most common tasks and a "How to use" presentation.
 - Add a dice roller and, possibly, a countdown timer.
-- Change the way user changes players' information into a radial menu accessible by touching the players' meepo.
+- Change the way user changes players' information into a radial menu accessible by touching the players' token.

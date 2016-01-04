@@ -79,11 +79,11 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
 
   var appWidth      = window.innerWidth;
   var appHeight     = window.innerHeight;
-  var meepoShift    = appWidth * 0.15;
+  var tokenShift    = appWidth * 0.15;
 
-  var xLeft         = appWidth * 0.15 - meepoShift;
-  var xMiddle       = appWidth * 0.50 - meepoShift;
-  var xRight        = appWidth * 0.85 - meepoShift;
+  var xLeft         = appWidth * 0.15 - tokenShift;
+  var xMiddle       = appWidth * 0.50 - tokenShift;
+  var xRight        = appWidth * 0.85 - tokenShift;
 
   var yTop          = appHeight * 0.14 - appWidth * 0.135;
   var yTopMiddle    = appHeight * 0.37 - appWidth * 0.135;
@@ -113,12 +113,12 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.combatants = [];
 
   // Player seats
-  var player0Pos = [$scope.players[0].position[0], $scope.players[0].position[0] + meepoShift*2, $scope.players[0].position[1], $scope.players[0].position[1] + meepoShift*2];
-  var player1Pos = [$scope.players[1].position[0], $scope.players[1].position[0] + meepoShift*2, $scope.players[1].position[1], $scope.players[1].position[1] + meepoShift*2];
-  var player2Pos = [$scope.players[2].position[0], $scope.players[2].position[0] + meepoShift*2, $scope.players[2].position[1], $scope.players[2].position[1] + meepoShift*2];
-  var player3Pos = [$scope.players[3].position[0], $scope.players[3].position[0] + meepoShift*2, $scope.players[3].position[1], $scope.players[3].position[1] + meepoShift*2];
-  var player4Pos = [$scope.players[4].position[0], $scope.players[4].position[0] + meepoShift*2, $scope.players[4].position[1], $scope.players[4].position[1] + meepoShift*2];
-  var player5Pos = [$scope.players[5].position[0], $scope.players[5].position[0] + meepoShift*2, $scope.players[5].position[1], $scope.players[5].position[1] + meepoShift*2];
+  var player0Pos = [$scope.players[0].position[0], $scope.players[0].position[0] + tokenShift*2, $scope.players[0].position[1], $scope.players[0].position[1] + tokenShift*2];
+  var player1Pos = [$scope.players[1].position[0], $scope.players[1].position[0] + tokenShift*2, $scope.players[1].position[1], $scope.players[1].position[1] + tokenShift*2];
+  var player2Pos = [$scope.players[2].position[0], $scope.players[2].position[0] + tokenShift*2, $scope.players[2].position[1], $scope.players[2].position[1] + tokenShift*2];
+  var player3Pos = [$scope.players[3].position[0], $scope.players[3].position[0] + tokenShift*2, $scope.players[3].position[1], $scope.players[3].position[1] + tokenShift*2];
+  var player4Pos = [$scope.players[4].position[0], $scope.players[4].position[0] + tokenShift*2, $scope.players[4].position[1], $scope.players[4].position[1] + tokenShift*2];
+  var player5Pos = [$scope.players[5].position[0], $scope.players[5].position[0] + tokenShift*2, $scope.players[5].position[1], $scope.players[5].position[1] + tokenShift*2];
 
   // Elements and position functions
   var vsCircle = document.getElementById('vs-icon');
