@@ -9,11 +9,11 @@ Munchful Table goals are to be:
 - Lightweight and have an aesthetically agnostic interface.
 - Easy and intuitive, requiring the least amount of inputs possible to finish each task.
 
-### Current version: 0.1.5
+### Current version: 0.2.0
 Munchful Table is very early in development and currently has no visual guidelines for new users or any explanation whatsoever on how to use the application.
 
 ### TO DO
-- Add visual guidelines for the most common tasks and a "How to use" presentation.
+- ~~Add visual guidelines for the most common tasks and a "How to use" presentation.~~
 - Add a dice roller and, possibly, a countdown timer.
 - ~~Change the way user changes players' information into a radial menu accessible by touching the players' token.~~
 - Update positions according to screen changes.
