@@ -225,7 +225,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
       $scope.panBench = false;
     }
 
-    touchListenerActive(false);
+    mouseListenerActive(false);
     $scope.closeRadial();
   };
 
@@ -250,7 +250,7 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   };
 
   $scope.panningOn = function(target, radial) {
-    touchListenerActive(true);
+    mouseListenerActive(true);
     $scope.cursorBg = target.color ? target.color[0] : target[0];
     $scope.panBench = !radial;
     if (radial) {
@@ -264,15 +264,22 @@ angular.module('SteroidsApplication', ['supersonic', 'hmTouchEvents'])
   $scope.my = -100;
   $scope.cursorBg = '#cccccc';
 
+  var mouseListener = function(event){
+    $scope.mx = event.clientX;
+    $scope.my = event.clientY;
+  };
+
   var touchListener = function(event){
     $scope.mx = event.touches[0].pageX;
     $scope.my = event.touches[0].pageY;
   };
 
-  var touchListenerActive = function(active) {
+  var mouseListenerActive = function(active) {
     if (active) {
+      window.addEventListener('mousemove', mouseListener, false);
       window.addEventListener('touchmove', touchListener, false);
     } else {
+      window.removeEventListener('mousemove', mouseListener, false);
       window.removeEventListener('touchmove', touchListener, false);
       $scope.mx = -100;
       $scope.my = -100;
