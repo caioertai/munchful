@@ -90,7 +90,10 @@
 
   <!-- Combat/Sheet Table -->
   <div class="{{inCombat || inPlayer ? 'open-table' : ''}} table">
-    <div class="close-icon" ng-show="inCombat || inPlayer" ng-click="inCombat = false; inPlayer = false">x</div>
+    <div class="close-icon" ng-show="inCombat || inPlayer" ng-click="inCombat = false; inPlayer = false">
+      <svg ng-include="'/assets/_close.svg'" version="1.1" viewBox="0 0 100 100"  fill="#ffffff"></svg>
+    </div>
+
     <div class="combat-container" ng-show="inCombat">
       <table class="combat-box">
         <tr>
@@ -114,7 +117,7 @@
       <table class="combat-box">
         <tr>
           <td colspan="3">
-            <img src="/assets/{{monsterTier}}.png" class="round-button fight-button" style="top: 1.5vw;position:relative" />
+            <img src="/assets/{{monsterTier}}.png" class="round-button monster-button" style="top: 1.5vw;position:relative" />
           </td>
         </tr>
         <tr>

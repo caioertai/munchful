@@ -49,6 +49,9 @@ svg
   color: #fff
   font-size: 6vw
   line-height: 7vw
+  z-index: 1
+  padding: 0.5vw 2vw
+  cursor: pointer
 
 .mp-box
   position: absolute
@@ -57,6 +60,7 @@ svg
   min-height: 15vh
   z-index: 10
   color: #fff
+  cursor: pointer
 
 .mp-bench
   z-index: 0
@@ -108,11 +112,18 @@ svg
   text-align: center
   font-size: 5vw
   margin: 1vw 0
+  cursor: pointer
 
 .fight-button
   border: none
   margin: 0
   color: #fff
+
+.monster-button
+  border: none
+  margin: 0
+  color: #fff
+  cursor: default
 
 .combat-box:first-child
   top: 3%
@@ -250,6 +261,7 @@ $vs-iconSize: 24vw
   margin-bottom: -$vs-iconSize/2
   border-radius: 50%
   z-index: 20
+  cursor: pointer
 
 .panon-menu
   // border: 3px dashed #ccc
@@ -262,6 +274,7 @@ $vs-iconSize: 24vw
   top: -12vw
   left: -12vw
   position: fixed
+  cursor: pointer
 
   img
     max-width: 16vw
@@ -286,7 +299,8 @@ bench-menu
   height: 9vw
   margin-top: 3vw
   margin-right: 0.5vw
-  position:relative
+  position: relative
+  cursor: pointer
 
 .instruction
   font-size: 3.25vw
