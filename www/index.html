@@ -23,8 +23,11 @@
 </head>
 <body ng-app="SteroidsApplication">
 <div ng-controller="IndexController">
+  <!-- Cursor -->
   <button id="cursor" class="round-button" style="background:{{cursorBg}};left:{{mx}}px;top:{{my}}px"></button>
 
+  <!-- Full Screen Button (not implemented) -->
+  <!-- <button id="fullscreen" class="round-button" style="top:0;left:0" ng-click="toggleFullScreen()">F</button> -->
 
   <!-- Players containers -->
   <div ng-repeat='player in players' style="left:{{player.position[0]}}px;top:{{player.position[1]}}px;transform:rotate({{player.position[2]}}deg);" class="mp-box" hm-panstart="panningOn(player, true)" hm-panmove="" hm-panend="positionCheck(player)" ng-click="selectPlayer(player)" ng-show='player.active'>
